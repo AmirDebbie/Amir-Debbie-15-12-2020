@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleCurrency } from "../../redux/actions";
-
 import {
   Wrapper,
   TitleWrapper,
@@ -13,6 +12,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import ItemList from "./ItemList";
 import StoreList from "./StoreList";
+import AddItem from "./AddItem";
 
 function Bought() {
   const [tab, setTab] = useState("items");
@@ -51,6 +51,7 @@ function Bought() {
         </Tooltip>
       )}
       <br />
+      <AddItem />
       {tab === "items" ? <ItemList /> : <StoreList />}
     </Wrapper>
   );

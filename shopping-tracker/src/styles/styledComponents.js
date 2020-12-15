@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const H1 = styled.h1`
@@ -91,12 +91,21 @@ export const StyledCurrencyButton = styled.button`
   transition: 150ms;
   position: absolute;
   top: 20px;
-  right: 20px;
+
   color: white;
   background-color: #3f51b5;
   outline: none;
   border: solid #3f51b5 3px;
   box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+  ${(props) =>
+    props.left
+      ? css`
+          left: 20px;
+        `
+      : css`
+          right: 20px;
+        `}
 
   &:hover {
     background-color: #3f51a5;
@@ -134,7 +143,13 @@ export const ReceivedButton = styled.button`
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${(props: { color: string }) => (props.color ? props.color : "white")};
-  text-decoration: ${(props: { textDecoration: string }) =>
-    props.textDecoration ? "underline" : "none"};
+  color: ${(props) => (props.color ? props.color : "white")};
+  text-decoration: ${(props) => (props.textDecoration ? "underline" : "none")};
+`;
+
+export const GridDiv = styled.div`
+  display: grid;
+  width: 95%;
+  grid-template-columns: ${(props) =>
+    props.repeatFormula ? props.repeatFormula : "1fr 1fr"};
 `;

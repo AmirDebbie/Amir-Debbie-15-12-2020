@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { capitalize, formatToIsraeliDate } from "../../helpers";
 import {
@@ -7,12 +7,39 @@ import {
   StyledSpan,
   StyledDivForList,
   ErrorDiv,
+  Center,
 } from "../../styles/styledComponents";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
+import TextField from "@material-ui/core/TextField";
 
 function ReceivedItemList() {
   const { shoppingList, currency } = useSelector((state) => state);
+  const [filterInput, setFilterInput] = useState("");
+  const [filteredList, setFilteredList] = useState(shoppingList);
+
+  const handleFilter = (e) => {
+    const input = e.target.value;
+    setFilterInput(input);
+
+    const foundItems = [];
+    for (let item of shoppingList) {
+      let found = false;
+      const arrOfItemsValues = [item.name, item.store, item.priceInShekels];
+      for (let value of arrOfItemsValues) {
+        if (
+          typeof value === "string" &&
+          value.toLowerCase().includes(input.toLowerCase())
+        ) {
+          found = true;
+        }
+      }
+      if (found) {
+        foundItems.push(item);
+      }
+    }
+    setFilteredList(foundItems);
+  };
 
   const getPrice = (priceInShekels) => {
     return currency.current === "ILS"
@@ -21,12 +48,23 @@ function ReceivedItemList() {
   };
   return (
     <>
+      <Center>
+        <TextField
+          variant="outlined"
+          value={filterInput}
+          label="Search"
+          onChange={handleFilter}
+        />
+      </Center>
       {currency.error.length > 0 && (
-        <ErrorDiv>
-          <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
-          &nbsp;
-          {currency.error}
-        </ErrorDiv>
+        <>
+          <br />
+          <ErrorDiv>
+            <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
+            &nbsp;
+            {currency.error}
+          </ErrorDiv>
+        </>
       )}
       <br />
       <StyledUl>
@@ -41,7 +79,7 @@ function ReceivedItemList() {
             </StyledSpan>
           </TableHeader>
         </li>
-        {shoppingList
+        {filteredList
           .filter((item) => item.received)
           .sort((a, b) => a.receivedDate - b.receivedDate)
           .map((item) => (

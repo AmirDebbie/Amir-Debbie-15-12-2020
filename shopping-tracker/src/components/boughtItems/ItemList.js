@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../../redux/actions";
 import { capitalize, formatToIsraeliDate } from "../../helpers";
@@ -9,14 +9,41 @@ import {
   StyledDivForList,
   ErrorDiv,
   ReceivedButton,
+  Center,
 } from "../../styles/styledComponents";
 import Tooltip from "@material-ui/core/Tooltip";
+import TextField from "@material-ui/core/TextField";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
 function ItemList() {
   const dispatch = useDispatch();
   const { shoppingList, currency } = useSelector((state) => state);
+  const [filterInput, setFilterInput] = useState("");
+  const [filteredList, setFilteredList] = useState(shoppingList);
+
+  const handleFilter = (e) => {
+    const input = e.target.value;
+    setFilterInput(input);
+
+    const foundItems = [];
+    for (let item of shoppingList) {
+      let found = false;
+      const arrOfItemsValues = [item.name, item.store, item.priceInShekels];
+      for (let value of arrOfItemsValues) {
+        if (
+          typeof value === "string" &&
+          value.toLowerCase().includes(input.toLowerCase())
+        ) {
+          found = true;
+        }
+      }
+      if (found) {
+        foundItems.push(item);
+      }
+    }
+    setFilteredList(foundItems);
+  };
 
   const receiveItem = (id) => {
     const list = shoppingList.map((item) => {
@@ -36,12 +63,23 @@ function ItemList() {
   };
   return (
     <>
+      <Center>
+        <TextField
+          variant="outlined"
+          value={filterInput}
+          label="Search"
+          onChange={handleFilter}
+        />
+      </Center>
       {currency.error.length > 0 && (
-        <ErrorDiv>
-          <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
-          &nbsp;
-          {currency.error}
-        </ErrorDiv>
+        <>
+          <br />
+          <ErrorDiv>
+            <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
+            &nbsp;
+            {currency.error}
+          </ErrorDiv>
+        </>
       )}
       <br />
       <StyledUl>
@@ -56,7 +94,7 @@ function ItemList() {
             </StyledSpan>
           </TableHeader>
         </li>
-        {shoppingList
+        {filteredList
           .filter((item) => !item.received)
           .sort((a, b) => a.deliveryDate - b.deliveryDate)
           .map((item) => (
