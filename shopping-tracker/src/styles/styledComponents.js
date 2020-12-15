@@ -44,9 +44,10 @@ export const StyledUl = styled.ul`
 
 export const StyledSpan = styled.span`
   font-weight: ${(props) => props.weight === "bold" && "bold"};
+  text-align: ${(props) => props.center && "center"};
 `;
 
-export const StyledDiv = styled.div`
+export const StyledDivForList = styled.div`
   display: grid;
   grid-template-columns: ${(props) =>
     props.repeatFormula
@@ -60,7 +61,7 @@ export const StyledDiv = styled.div`
   margin: 2px;
 `;
 
-export const TableHeader = styled(StyledDiv)`
+export const TableHeader = styled(StyledDivForList)`
   background-color: #3f51b5;
   color: white;
 `;
@@ -98,7 +99,15 @@ export const StyledCurrencyButton = styled.button`
   box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
   &:hover {
-    color: #3f51b5;
-    background-color: white;
+    background-color: #3f51a5;
+    box-shadow: 3px 2px 20px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
+`;
+
+export const ListWrapper = styled.div`
+  width: 50%;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 0 auto;
 `;

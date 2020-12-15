@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../redux/actions";
 import { capitalize, formatToIsraeliDate } from "../helpers";
@@ -6,8 +6,8 @@ import {
   TableHeader,
   StyledUl,
   StyledSpan,
-  StyledDiv,
-  ErrorDiv,
+  StyledDivForList,
+  ListWrapper,
 } from "../styles/styledComponents";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -17,78 +17,40 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
 function StoreList() {
-  const dispatch = useDispatch();
   const { shoppingList, currency } = useSelector((state) => state);
-
-  const receiveItem = (id) => {
-    const list = shoppingList.map((item) => {
-      if (item.id === id) {
-        item.received = true;
-      }
-      return item;
+  const stores = useMemo(() => {
+    const storesArr = shoppingList.map((item) => item.store);
+    const storedObj = {};
+    storesArr.forEach((store) => {
+      storedObj[store] = storedObj[store] ? storedObj[store] + 1 : 1;
     });
-    dispatch(setList(list));
-  };
-
-  const getPrice = (priceInShekels) => {
-    return currency.current === "ILS"
-      ? priceInShekels
-      : Math.round(priceInShekels / currency.dif);
-  };
+    return storedObj;
+  }, [shoppingList]);
   return (
     <>
-      {currency.error.length > 0 && (
-        <ErrorDiv>
-          <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
-          &nbsp;
-          {currency.error}
-        </ErrorDiv>
-      )}
       <br />
-      <StyledUl>
-        <li>
-          <TableHeader>
-            <ShoppingCartIcon />
-            <StyledSpan weight="bold">Store</StyledSpan>
-            <StyledSpan weight="bold">Store</StyledSpan>
-            <StyledSpan weight="bold">Price</StyledSpan>
-            <StyledSpan weight="bold">Expected Delivery Date</StyledSpan>
-          </TableHeader>
-        </li>
-        {shoppingList
-          .filter((item) => !item.received)
-          .map((item) => (
-            <li key={item.id}>
-              <StyledDiv>
-                <LocalMallIcon />
-                <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
-                <StyledSpan>{capitalize(item.store)}</StyledSpan>
-                <StyledSpan>
-                  {getPrice(item.priceInShekels)}
-                  {currency.current === "ILS" ? "₪" : "$"}
-                </StyledSpan>
-                <StyledSpan>
-                  {formatToIsraeliDate(item.deliveryDate)}
-                </StyledSpan>
-                <StyledSpan>
-                  <Tooltip title="Check item as received">
-                    <IconButton
-                      style={{
-                        height: 35,
-                        width: 35,
-                        backgroundColor: "rgba(0,140,0, 0.5)",
-                        color: "white",
-                      }}
-                      onClick={() => receiveItem(item.id)}
-                    >
-                      <CheckIcon />
-                    </IconButton>
-                  </Tooltip>
-                </StyledSpan>
-              </StyledDiv>
+      <ListWrapper>
+        <StyledUl>
+          <li>
+            <TableHeader repeatFormula="1fr 3fr 2fr">
+              <ShoppingCartIcon />
+              <StyledSpan weight="bold">Store</StyledSpan>
+              <StyledSpan center weight="bold">
+                Product Amount
+              </StyledSpan>
+            </TableHeader>
+          </li>
+          {Object.keys(stores).map((store) => (
+            <li key={store}>
+              <StyledDivForList repeatFormula="1fr 3fr 2fr">
+                <ShoppingCartIcon />
+                <StyledSpan weight="bold">{capitalize(store)}</StyledSpan>
+                <StyledSpan center>{stores[store]}</StyledSpan>
+              </StyledDivForList>
             </li>
           ))}
-      </StyledUl>
+        </StyledUl>
+      </ListWrapper>
     </>
   );
 }

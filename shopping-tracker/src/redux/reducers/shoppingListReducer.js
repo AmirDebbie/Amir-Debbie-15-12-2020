@@ -6,7 +6,7 @@ const shoppingListMock = [
     name: "iPhone 11",
     store: "Apple Store",
     priceInShekels: 4000,
-    deliveryDate: Date.now(),
+    deliveryDate: Date.now() + 4000000000,
     received: false,
   },
   {

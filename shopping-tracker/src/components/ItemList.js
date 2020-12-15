@@ -6,7 +6,7 @@ import {
   TableHeader,
   StyledUl,
   StyledSpan,
-  StyledDiv,
+  StyledDivForList,
   ErrorDiv,
 } from "../styles/styledComponents";
 import IconButton from "@material-ui/core/IconButton";
@@ -48,18 +48,21 @@ function ItemList() {
       <StyledUl>
         <li>
           <TableHeader>
-            <ShoppingCartIcon />
+            <LocalMallIcon />
             <StyledSpan weight="bold">Product</StyledSpan>
             <StyledSpan weight="bold">Store</StyledSpan>
             <StyledSpan weight="bold">Price</StyledSpan>
-            <StyledSpan weight="bold">Expected Delivery Date</StyledSpan>
+            <StyledSpan center weight="bold">
+              Expected Delivery Date
+            </StyledSpan>
           </TableHeader>
         </li>
         {shoppingList
           .filter((item) => !item.received)
+          .sort((a, b) => a.deliveryDate - b.deliveryDate)
           .map((item) => (
             <li key={item.id}>
-              <StyledDiv>
+              <StyledDivForList>
                 <LocalMallIcon />
                 <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
                 <StyledSpan>{capitalize(item.store)}</StyledSpan>
@@ -67,10 +70,10 @@ function ItemList() {
                   {getPrice(item.priceInShekels)}
                   {currency.current === "ILS" ? "₪" : "$"}
                 </StyledSpan>
-                <StyledSpan>
+                <StyledSpan center>
                   {formatToIsraeliDate(item.deliveryDate)}
                 </StyledSpan>
-                <StyledSpan>
+                <StyledSpan center>
                   <Tooltip title="Check item as received">
                     <IconButton
                       style={{
@@ -85,7 +88,7 @@ function ItemList() {
                     </IconButton>
                   </Tooltip>
                 </StyledSpan>
-              </StyledDiv>
+              </StyledDivForList>
             </li>
           ))}
       </StyledUl>
