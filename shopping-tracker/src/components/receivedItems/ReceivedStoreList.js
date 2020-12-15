@@ -1,31 +1,28 @@
 import React, { useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setList } from "../redux/actions";
-import { capitalize, formatToIsraeliDate } from "../helpers";
+import { useSelector } from "react-redux";
+import { capitalize } from "../../helpers";
 import {
   TableHeader,
   StyledUl,
   StyledSpan,
   StyledDivForList,
   ListWrapper,
-} from "../styles/styledComponents";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-import CheckIcon from "@material-ui/icons/Check";
-import LocalMallIcon from "@material-ui/icons/LocalMall";
+} from "../../styles/styledComponents";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
-function StoreList() {
-  const { shoppingList, currency } = useSelector((state) => state);
+const StoreList = () => {
+  const { shoppingList } = useSelector((state) => state);
   const stores = useMemo(() => {
-    const storesArr = shoppingList.map((item) => item.store);
+    const storesArr = shoppingList
+      .filter((item) => item.received)
+      .map((item) => item.store);
     const storedObj = {};
     storesArr.forEach((store) => {
       storedObj[store] = storedObj[store] ? storedObj[store] + 1 : 1;
     });
     return storedObj;
   }, [shoppingList]);
+
   return (
     <>
       <br />
@@ -53,6 +50,6 @@ function StoreList() {
       </ListWrapper>
     </>
   );
-}
+};
 
 export default StoreList;

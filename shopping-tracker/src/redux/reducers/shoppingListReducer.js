@@ -8,6 +8,7 @@ const shoppingListMock = [
     priceInShekels: 4000,
     deliveryDate: Date.now() + 4000000000,
     received: false,
+    receivedDate: null,
   },
   {
     id: "product-2",
@@ -16,6 +17,7 @@ const shoppingListMock = [
     priceInShekels: 2000,
     deliveryDate: Date.now() + 100000000,
     received: false,
+    receivedDate: null,
   },
   {
     id: "product-3",
@@ -24,6 +26,7 @@ const shoppingListMock = [
     priceInShekels: 800,
     deliveryDate: Date.now() + 200000000,
     received: false,
+    receivedDate: null,
   },
   {
     id: "product-4",
@@ -32,6 +35,7 @@ const shoppingListMock = [
     priceInShekels: 750,
     deliveryDate: Date.now() + 300000000,
     received: false,
+    receivedDate: null,
   },
   {
     id: "product-5",
@@ -40,6 +44,7 @@ const shoppingListMock = [
     priceInShekels: 2500,
     deliveryDate: Date.now() + 400000000,
     received: false,
+    receivedDate: null,
   },
 ];
 

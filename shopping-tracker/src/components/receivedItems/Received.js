@@ -1,56 +1,30 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  toggleCurrency,
-  requestCurrencySuccess,
-  requestCurrencyFailure,
-} from "../redux/actions";
-import axios from "axios";
+import { toggleCurrency } from "../../redux/actions";
 import {
   Wrapper,
   TitleWrapper,
   H1,
   Center,
   StyledCurrencyButton,
-} from "../styles/styledComponents";
+} from "../../styles/styledComponents";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
-import ItemList from "./ItemList";
-import StoreList from "./StoreList";
+import ReceivedItemList from "./ReceivedItemList";
+import ReceivedStoreList from "./ReceivedStoreList";
 
-function List() {
+function Received() {
   const [tab, setTab] = useState("items");
   const dispatch = useDispatch();
   const { currency } = useSelector((state) => state);
-
-  const fetchCurrency = useCallback(async () => {
-    try {
-      const {
-        data: {
-          rates: { ILS: dif },
-        },
-      } = await axios.get(
-        "https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,ILS"
-      );
-      dispatch(requestCurrencySuccess(dif));
-    } catch (error) {
-      dispatch(requestCurrencyFailure("Currency may not be up to date"));
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchCurrency();
-    const currencyInterval = setInterval(fetchCurrency, 10 * 1000);
-
-    return () => clearInterval(currencyInterval);
-  }, [fetchCurrency]);
 
   return (
     <Wrapper>
       <Center>
         <TitleWrapper>
-          <H1>Bought Items</H1>
+          <H1>Received Items</H1>
         </TitleWrapper>
+        <br />
         <Button
           style={{ marginRight: 5 }}
           variant="contained"
@@ -76,9 +50,9 @@ function List() {
         </Tooltip>
       )}
       <br />
-      {tab === "items" ? <ItemList /> : <StoreList />}
+      {tab === "items" ? <ReceivedItemList /> : <ReceivedStoreList />}
     </Wrapper>
   );
 }
 
-export default List;
+export default Received;

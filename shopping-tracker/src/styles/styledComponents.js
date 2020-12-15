@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import IconButton from "@material-ui/core/IconButton";
+import { Link } from "react-router-dom";
 
 export const H1 = styled.h1`
   padding: 10px 20px;
@@ -110,4 +110,31 @@ export const ListWrapper = styled.div`
   min-width: 300px;
   max-width: 600px;
   margin: 0 auto;
+`;
+
+export const ReceivedButton = styled.button`
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 150ms;
+  color: white;
+  background-color: #3f51b5;
+  outline: none;
+  border: solid #3f51b5 3px;
+  box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+  &:hover {
+    background-color: #3f51a5;
+    box-shadow: 3px 2px 20px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(0, 0, 0, 0.1) inset;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: ${(props: { color: string }) => (props.color ? props.color : "white")};
+  text-decoration: ${(props: { textDecoration: string }) =>
+    props.textDecoration ? "underline" : "none"};
 `;

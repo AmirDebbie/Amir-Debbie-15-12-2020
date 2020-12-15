@@ -1,19 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setList } from "../redux/actions";
-import { capitalize, formatToIsraeliDate } from "../helpers";
+import { setList } from "../../redux/actions";
+import { capitalize, formatToIsraeliDate } from "../../helpers";
 import {
   TableHeader,
   StyledUl,
   StyledSpan,
   StyledDivForList,
   ErrorDiv,
-} from "../styles/styledComponents";
-import IconButton from "@material-ui/core/IconButton";
+  ReceivedButton,
+} from "../../styles/styledComponents";
 import Tooltip from "@material-ui/core/Tooltip";
-import CheckIcon from "@material-ui/icons/Check";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
 function ItemList() {
@@ -24,6 +22,7 @@ function ItemList() {
     const list = shoppingList.map((item) => {
       if (item.id === id) {
         item.received = true;
+        item.receivedDate = Date.now();
       }
       return item;
     });
@@ -75,17 +74,9 @@ function ItemList() {
                 </StyledSpan>
                 <StyledSpan center>
                   <Tooltip title="Check item as received">
-                    <IconButton
-                      style={{
-                        height: 35,
-                        width: 35,
-                        backgroundColor: "rgba(0,140,0, 0.5)",
-                        color: "white",
-                      }}
-                      onClick={() => receiveItem(item.id)}
-                    >
-                      <CheckIcon />
-                    </IconButton>
+                    <ReceivedButton onClick={() => receiveItem(item.id)}>
+                      ✓
+                    </ReceivedButton>
                   </Tooltip>
                 </StyledSpan>
               </StyledDivForList>
