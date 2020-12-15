@@ -64,3 +64,41 @@ export const TableHeader = styled(StyledDiv)`
   background-color: #3f51b5;
   color: white;
 `;
+export const ErrorDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 300px;
+  background-color: rgba(255, 0, 0, 0.493);
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+`;
+
+export const StyledCurrencyButton = styled.button`
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 150ms;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  background-color: #3f51b5;
+  outline: none;
+  border: solid #3f51b5 3px;
+  box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+  &:hover {
+    color: #3f51b5;
+    background-color: white;
+  }
+`;
