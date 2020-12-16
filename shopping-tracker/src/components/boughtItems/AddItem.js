@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../../redux/actions";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 import {
   Modal,
   Button,
@@ -63,7 +63,7 @@ function AddItem() {
     data.deliveryDate = new Date(data.deliveryDate).valueOf();
     data.received = false;
     data.receivedDate = null;
-    data.id = uuid();
+    data.id = uuidv4();
     dispatch(setList([...shoppingList, data]));
     handleClose();
   };

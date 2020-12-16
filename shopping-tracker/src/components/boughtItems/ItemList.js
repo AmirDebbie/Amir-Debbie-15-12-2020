@@ -72,6 +72,7 @@ function ItemList() {
     <>
       <Center>
         <TextField
+          id="searchBar"
           variant="outlined"
           style={{ color: "blue" }}
           value={filterInput}

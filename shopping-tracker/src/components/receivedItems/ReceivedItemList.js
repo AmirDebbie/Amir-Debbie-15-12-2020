@@ -54,6 +54,7 @@ function ReceivedItemList() {
     <>
       <Center>
         <TextField
+          id="searchBar"
           variant="outlined"
           value={filterInput}
           label="Search"
