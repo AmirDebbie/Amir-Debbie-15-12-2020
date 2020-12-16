@@ -6,5 +6,7 @@ export const getTheme = (currentTheme) => {
       return lightTheme;
     case "dark":
       return darkTheme;
+    default:
+      return lightTheme;
   }
 };

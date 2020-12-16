@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   requestCurrencySuccess,
@@ -20,18 +19,18 @@ import { ThemeProvider } from "styled-components";
 import { getTheme, GlobalStyle } from "./styles";
 import ErrorBoundary from "./components/ErrorBoundary";
 
+const BASE_URL =
+  "https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,ILS";
+
 function App() {
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state);
   const fetchCurrency = useCallback(async () => {
     try {
+      const result = await fetch(BASE_URL);
       const {
-        data: {
-          rates: { ILS: dif },
-        },
-      } = await axios.get(
-        "https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,ILS"
-      );
+        rates: { ILS: dif },
+      } = await result.json();
       dispatch(requestCurrencySuccess(dif));
     } catch (error) {
       dispatch(requestCurrencyFailure("Currency may not be up to date"));
