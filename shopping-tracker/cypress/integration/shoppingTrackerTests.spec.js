@@ -31,7 +31,7 @@ describe("Shopping Tracker Tests", () => {
         value: "Bug",
       },
       {
-        field: "priceInShekels",
+        field: "priceInUSD",
         errors: {
           values: [
             {

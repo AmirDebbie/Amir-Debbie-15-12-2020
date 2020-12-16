@@ -209,7 +209,7 @@ export const GridDiv = styled.div`
   grid-template-columns: ${(props) =>
     props.repeatFormula ? props.repeatFormula : "1fr 1fr"};
 
-  @media (max-width: 880px) {
+  @media (max-width: 1000px) {
     grid-template-columns: ${(props) =>
       props.repeatFormula ? props.repeatFormula : "1fr"};
   }

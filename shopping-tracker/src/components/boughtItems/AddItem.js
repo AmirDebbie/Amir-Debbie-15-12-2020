@@ -10,6 +10,7 @@ import {
   FormHelperText,
   Backdrop,
   Fade,
+  InputAdornment,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import {
@@ -21,6 +22,9 @@ import {
 import { useForm } from "react-hook-form";
 import { ErrorButton, ActionButton } from "../formIcons";
 import { generateBrs } from "../../helpers";
+import AddIcon from "@material-ui/icons/Add";
+import StoreIcon from "@material-ui/icons/Store";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 
 function AddItem() {
   const { shoppingList, innerWidth, theme } = useSelector((state) => state);
@@ -63,7 +67,7 @@ function AddItem() {
     data.deliveryDate = new Date(data.deliveryDate).valueOf();
     data.received = false;
     data.receivedDate = null;
-    data.priceInShekels = Number(data.priceInShekels);
+    data.priceInUSD = Number(data.priceInUSD);
     data.id = uuidv4();
     dispatch(setList([...shoppingList, data]));
     handleClose();
@@ -102,6 +106,11 @@ function AddItem() {
                       }}
                       InputProps={{
                         style: inputProps[theme],
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <AddIcon style={{ color: "black" }} />
+                          </InputAdornment>
+                        ),
                       }}
                     />
                     {!empty ? (
@@ -127,6 +136,11 @@ function AddItem() {
                       }}
                       InputProps={{
                         style: inputProps[theme],
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <StoreIcon style={{ color: "black" }} />
+                          </InputAdornment>
+                        ),
                       }}
                     />
                     {!empty ? (
@@ -140,31 +154,36 @@ function AddItem() {
                       )
                     ) : null}
                   </div>
-                  {innerWidth < 880 && <br />}
+                  {innerWidth < 1000 && <br />}
                   <div>
                     <TextField
-                      id="priceInShekels"
-                      label="Price In Shekels"
+                      id="priceInUSD"
+                      label="Price In USD"
                       inputRef={register({
                         pattern: {
                           value: /^[+-]?\d+(\.\d+)?$/,
                           message: "Please enter a valid price",
                         },
-                        required: "Price in shekels is required",
+                        required: "Price is required",
                       })}
-                      name="priceInShekels"
+                      name="priceInUSD"
                       InputLabelProps={{
                         style: searchInputLabelProps[theme],
                       }}
                       InputProps={{
                         style: inputProps[theme],
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <AttachMoneyIcon style={{ color: "black" }} />
+                          </InputAdornment>
+                        ),
                       }}
                     />
                     {!empty ? (
-                      errors.priceInShekels ? (
+                      errors.priceInUSD ? (
                         <ErrorButton
                           id="priceError"
-                          tooltipTitle={errors.priceInShekels.message}
+                          tooltipTitle={errors.priceInUSD.message}
                         />
                       ) : (
                         <ActionButton />
@@ -184,7 +203,7 @@ function AddItem() {
                         inputRef={register({
                           required: "Delivery Date is required",
                         })}
-                        style={{ width: "200px" }}
+                        style={{ width: "225px" }}
                         InputLabelProps={{
                           style: searchInputLabelProps[theme],
                         }}

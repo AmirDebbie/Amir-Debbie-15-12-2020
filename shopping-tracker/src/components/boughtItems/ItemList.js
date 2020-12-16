@@ -66,14 +66,14 @@ function ItemList() {
     dispatch(setList(list));
   };
 
-  const getPrice = (priceInShekels) => {
-    return currency.current === "ILS"
-      ? priceInShekels
-      : Math.round(priceInShekels / currency.dif);
+  const getPrice = (priceInUSD) => {
+    return currency.current === "USD"
+      ? priceInUSD
+      : Math.round(priceInUSD * currency.dif);
   };
 
   const filteredListPriceSum = useMemo(() => {
-    return filteredList.reduce((acc, item) => acc + item.priceInShekels, 0);
+    return filteredList.reduce((acc, item) => acc + item.priceInUSD, 0);
   }, [filteredList]);
 
   return (
@@ -126,7 +126,7 @@ function ItemList() {
                 <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
                 <StyledSpan>{capitalize(item.store)}</StyledSpan>
                 <StyledSpan>
-                  {getPrice(item.priceInShekels)}
+                  {getPrice(item.priceInUSD)}
                   {currency.current === "ILS" ? "₪" : "$"}
                 </StyledSpan>
                 <StyledSpan center>
