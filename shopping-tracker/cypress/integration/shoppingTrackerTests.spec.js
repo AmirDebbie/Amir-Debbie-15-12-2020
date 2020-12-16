@@ -69,14 +69,22 @@ describe("Shopping Tracker Tests", () => {
     cy.get(".itemListItem").should("have.length", 6);
   });
 
-  it("Tests the ability to mark item as received", () => {
+  it.only("Tests the ability to mark item as received", () => {
     cy.get(".itemListItem").should("have.length", 5);
-    cy.get("#receiveButton1").click();
+    cy.get("#storesButton").click();
+    cy.get("#ebay > .dMfDle").contains("1");
+    cy.get("#itemsButton").click();
+    cy.get("#receiveButton0").click();
+    cy.get("#storesButton").click();
+    cy.get("#ebay > .dMfDle").should("not.exist");
+    cy.get("#itemsButton").click();
     cy.get(".itemListItem").should("have.length", 4);
-    cy.get("#receiveButton1").click();
+    cy.get("#receiveButton0").click();
     cy.get(".itemListItem").should("have.length", 3);
     cy.get("#openMenu").click();
     cy.get("#receivedItems").click();
     cy.get(".receivedListItem").should("have.length", 2);
+    cy.get("#storesButton").click();
+    cy.get("#ebay > .sc-iBPRYJ > .dMfDle").contains("1");
   });
 });

@@ -26,6 +26,7 @@ function Received() {
         </TitleWrapper>
         <br />
         <Button
+          id="itemsButton"
           style={{ marginRight: 5 }}
           variant="contained"
           color={tab === "items" ? "primary" : "default"}
@@ -34,6 +35,7 @@ function Received() {
           Item List
         </Button>
         <Button
+          id="storesButton"
           style={{ marginLeft: 5 }}
           color={tab === "stores" ? "primary" : "default"}
           variant="contained"
