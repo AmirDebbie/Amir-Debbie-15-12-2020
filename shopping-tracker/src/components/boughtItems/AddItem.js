@@ -8,6 +8,8 @@ import {
   TextField,
   FormControl,
   FormHelperText,
+  Backdrop,
+  Fade,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import {
@@ -16,8 +18,6 @@ import {
   searchInputLabelProps,
   inputProps,
 } from "../../styles";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import { useForm } from "react-hook-form";
 import { ErrorButton, ActionButton } from "../formIcons";
 import { generateBrs } from "../../helpers";
@@ -64,7 +64,6 @@ function AddItem() {
     data.received = false;
     data.receivedDate = null;
     data.id = uuid();
-    console.log(data);
     dispatch(setList([...shoppingList, data]));
     handleClose();
   };

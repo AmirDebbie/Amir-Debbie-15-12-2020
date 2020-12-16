@@ -12,9 +12,8 @@ import {
   Center,
   searchInputProps,
   searchInputLabelProps,
-} from "../../styles/styledComponents";
-import Tooltip from "@material-ui/core/Tooltip";
-import TextField from "@material-ui/core/TextField";
+} from "../../styles";
+import { Tooltip, TextField } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
@@ -25,7 +24,6 @@ function ItemList() {
   );
   const [filterInput, setFilterInput] = useState("");
   const [filteredList, setFilteredList] = useState(shoppingList);
-  console.log(shoppingList);
   const handleFilter = (e) => {
     const input = e.target.value;
     setFilterInput(input);
@@ -33,7 +31,7 @@ function ItemList() {
     const foundItems = [];
     for (let item of shoppingList) {
       let found = false;
-      const arrOfItemsValues = [item.name, item.store, item.priceInShekels];
+      const arrOfItemsValues = [item.name, item.store];
       for (let value of arrOfItemsValues) {
         if (
           typeof value === "string" &&

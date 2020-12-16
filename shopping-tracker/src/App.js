@@ -17,7 +17,8 @@ import Received from "./components/receivedItems/Received";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/NavBar";
 import { ThemeProvider } from "styled-components";
-import { getTheme, GlobalStyle, AppWrapper } from "./styles";
+import { getTheme, GlobalStyle } from "./styles";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,10 +58,14 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/list">
-            <Bought />
+            <ErrorBoundary>
+              <Bought />
+            </ErrorBoundary>
           </Route>
           <Route exact path="/received">
-            <Received />
+            <ErrorBoundary>
+              <Received />
+            </ErrorBoundary>
           </Route>
           <Route exact path="/">
             <Redirect to="/list" />

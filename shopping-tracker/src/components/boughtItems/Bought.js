@@ -7,12 +7,12 @@ import {
   H1,
   Center,
   StyledCurrencyButton,
-} from "../../styles/styledComponents";
-import Tooltip from "@material-ui/core/Tooltip";
-import Button from "@material-ui/core/Button";
+} from "../../styles";
+import { Button, Tooltip } from "@material-ui/core";
 import ItemList from "./ItemList";
 import StoreList from "./StoreList";
 import AddItem from "./AddItem";
+import ErrorBoundary from "../ErrorBoundary";
 
 function Bought() {
   const [tab, setTab] = useState("items");
@@ -54,7 +54,15 @@ function Bought() {
       )}
       <br />
       <AddItem />
-      {tab === "items" ? <ItemList /> : <StoreList />}
+      {tab === "items" ? (
+        <ErrorBoundary>
+          <ItemList />
+        </ErrorBoundary>
+      ) : (
+        <ErrorBoundary>
+          <StoreList />
+        </ErrorBoundary>
+      )}
     </Wrapper>
   );
 }

@@ -2,14 +2,6 @@ import styled, { css, createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
 import ToolBar from "@material-ui/core/ToolBar";
 
-export const AppWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundBody};
-  width: 100vw;
-  height: 100%;
-  position: fixed;
-  /* padding-bottom: 50px; */
-`;
-
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.backgroundBody};
@@ -237,6 +229,22 @@ export const StyledDrawer = styled.div`
   height: 100%;
   width: 220px;
   overflow: hidden;
+`;
+
+export const DivError = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  ${(props) =>
+    props.marginTop &&
+    css`
+      margin-top: 30vh;
+    `}
+  color: ${({ theme }) => theme.colors.font};
 `;
 
 export const searchInputProps = {

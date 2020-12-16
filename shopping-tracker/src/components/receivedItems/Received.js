@@ -7,11 +7,11 @@ import {
   H1,
   Center,
   StyledCurrencyButton,
-} from "../../styles/styledComponents";
-import Tooltip from "@material-ui/core/Tooltip";
-import Button from "@material-ui/core/Button";
+} from "../../styles";
+import { Tooltip, Button } from "@material-ui/core";
 import ReceivedItemList from "./ReceivedItemList";
 import ReceivedStoreList from "./ReceivedStoreList";
+import ErrorBoundary from "../ErrorBoundary";
 
 function Received() {
   const [tab, setTab] = useState("items");
@@ -52,7 +52,15 @@ function Received() {
         </Tooltip>
       )}
       <br />
-      {tab === "items" ? <ReceivedItemList /> : <ReceivedStoreList />}
+      {tab === "items" ? (
+        <ErrorBoundary>
+          <ReceivedItemList />
+        </ErrorBoundary>
+      ) : (
+        <ErrorBoundary>
+          <ReceivedStoreList />
+        </ErrorBoundary>
+      )}
     </Wrapper>
   );
 }

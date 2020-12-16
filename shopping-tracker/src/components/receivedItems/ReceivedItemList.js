@@ -10,7 +10,7 @@ import {
   Center,
   searchInputProps,
   searchInputLabelProps,
-} from "../../styles/styledComponents";
+} from "../../styles";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 import TextField from "@material-ui/core/TextField";
@@ -29,7 +29,7 @@ function ReceivedItemList() {
     const foundItems = [];
     for (let item of shoppingList) {
       let found = false;
-      const arrOfItemsValues = [item.name, item.store, item.priceInShekels];
+      const arrOfItemsValues = [item.name, item.store];
       for (let value of arrOfItemsValues) {
         if (
           typeof value === "string" &&

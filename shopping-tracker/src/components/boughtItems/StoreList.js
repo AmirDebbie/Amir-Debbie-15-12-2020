@@ -7,7 +7,7 @@ import {
   StyledSpan,
   StyledDivForList,
   ListWrapper,
-} from "../../styles/styledComponents";
+} from "../../styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const StoreList = () => {

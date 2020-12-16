@@ -21,7 +21,6 @@ function NavAppBar() {
   const handleDrawer = () => {
     setOpen(true);
   };
-  console.log(theme);
 
   return (
     <div>
