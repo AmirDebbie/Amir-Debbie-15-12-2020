@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   requestCurrencySuccess,
   requestCurrencyFailure,
@@ -16,9 +16,12 @@ import Bought from "./components/boughtItems/Bought";
 import Received from "./components/receivedItems/Received";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/NavBar";
+import { ThemeProvider } from "styled-components";
+import { getTheme, GlobalStyle, AppWrapper } from "./styles";
 
 function App() {
   const dispatch = useDispatch();
+  const { theme } = useSelector((state) => state);
   const fetchCurrency = useCallback(async () => {
     try {
       const {
@@ -46,23 +49,27 @@ function App() {
       clearInterval(currencyInterval);
     };
   }, [fetchCurrency, dispatch]);
+
   return (
     <Router>
-      <NavBar />
-      <Switch>
-        <Route exact path="/list">
-          <Bought />
-        </Route>
-        <Route exact path="/received">
-          <Received />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/list" />
-        </Route>
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
+      <ThemeProvider theme={() => getTheme(theme)}>
+        <GlobalStyle />
+        <NavBar />
+        <Switch>
+          <Route exact path="/list">
+            <Bought />
+          </Route>
+          <Route exact path="/received">
+            <Received />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/list" />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </ThemeProvider>
     </Router>
   );
 }

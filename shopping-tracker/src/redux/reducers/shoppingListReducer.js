@@ -1,8 +1,9 @@
 import { SET_LIST } from "../actionTypes";
+import { uuid } from "uuidv4";
 
 const shoppingListMock = [
   {
-    id: "product-1",
+    id: uuid(),
     name: "iPhone 11",
     store: "Apple Store",
     priceInShekels: 4000,
@@ -11,7 +12,7 @@ const shoppingListMock = [
     receivedDate: null,
   },
   {
-    id: "product-2",
+    id: uuid(),
     name: "Oneplus 8T",
     store: "ebay",
     priceInShekels: 2000,
@@ -20,7 +21,7 @@ const shoppingListMock = [
     receivedDate: null,
   },
   {
-    id: "product-3",
+    id: uuid(),
     name: "Nintendo Switch",
     store: "Amazon",
     priceInShekels: 800,
@@ -29,7 +30,7 @@ const shoppingListMock = [
     receivedDate: null,
   },
   {
-    id: "product-4",
+    id: uuid(),
     name: "Headphones",
     store: "Amazon",
     priceInShekels: 750,
@@ -38,7 +39,7 @@ const shoppingListMock = [
     receivedDate: null,
   },
   {
-    id: "product-5",
+    id: uuid(),
     name: "Samsung Galaxy Note 10",
     store: "Amazon",
     priceInShekels: 2500,

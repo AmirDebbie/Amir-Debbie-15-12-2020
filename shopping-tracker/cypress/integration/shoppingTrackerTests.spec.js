@@ -1,4 +1,8 @@
 describe("Shopping Tracker Tests", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000/list");
+  });
+
   it("Tests the ability to add item to list", () => {
     const inputs = [
       {
@@ -42,7 +46,6 @@ describe("Shopping Tracker Tests", () => {
       },
     ];
 
-    cy.visit("http://localhost:3000/list");
     cy.get(".itemListItem").should("have.length", 5);
     cy.get("#addItemButton").click();
     cy.get("#submitButton").click();
@@ -64,5 +67,9 @@ describe("Shopping Tracker Tests", () => {
     });
     cy.get("#submitButton").click();
     cy.get(".itemListItem").should("have.length", 6);
+  });
+
+  it("Tests the ability to mark item as received", () => {
+    cy.get(".itemListItem").should("have.length", 5);
   });
 });

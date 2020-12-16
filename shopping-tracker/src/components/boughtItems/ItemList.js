@@ -10,6 +10,8 @@ import {
   ErrorDiv,
   ReceivedButton,
   Center,
+  searchInputProps,
+  searchInputLabelProps,
 } from "../../styles/styledComponents";
 import Tooltip from "@material-ui/core/Tooltip";
 import TextField from "@material-ui/core/TextField";
@@ -18,10 +20,12 @@ import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
 function ItemList() {
   const dispatch = useDispatch();
-  const { shoppingList, currency, innerWidth } = useSelector((state) => state);
+  const { shoppingList, currency, innerWidth, theme } = useSelector(
+    (state) => state
+  );
   const [filterInput, setFilterInput] = useState("");
   const [filteredList, setFilteredList] = useState(shoppingList);
-
+  console.log(shoppingList);
   const handleFilter = (e) => {
     const input = e.target.value;
     setFilterInput(input);
@@ -71,9 +75,16 @@ function ItemList() {
       <Center>
         <TextField
           variant="outlined"
+          style={{ color: "blue" }}
           value={filterInput}
           label="Search"
           onChange={handleFilter}
+          InputLabelProps={{
+            style: searchInputLabelProps[theme],
+          }}
+          InputProps={{
+            style: searchInputProps[theme],
+          }}
         />
       </Center>
       {currency.error.length > 0 && (
@@ -102,7 +113,7 @@ function ItemList() {
         {filteredList
           .filter((item) => !item.received)
           .sort((a, b) => a.deliveryDate - b.deliveryDate)
-          .map((item) => (
+          .map((item, i) => (
             <li className="itemListItem" key={item.id}>
               <StyledDivForList>
                 {innerWidth > 768 && <LocalMallIcon />}
@@ -117,7 +128,10 @@ function ItemList() {
                 </StyledSpan>
                 <StyledSpan center>
                   <Tooltip title="Check item as received">
-                    <ReceivedButton onClick={() => receiveItem(item.id)}>
+                    <ReceivedButton
+                      id={`receiveButton${i}`}
+                      onClick={() => receiveItem(item.id)}
+                    >
                       ✓
                     </ReceivedButton>
                   </Tooltip>

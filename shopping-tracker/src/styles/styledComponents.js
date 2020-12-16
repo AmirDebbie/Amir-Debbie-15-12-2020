@@ -1,5 +1,20 @@
-import styled, { css } from "styled-components";
+import styled, { css, createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
+import ToolBar from "@material-ui/core/ToolBar";
+
+export const AppWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundBody};
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  /* padding-bottom: 50px; */
+`;
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${({ theme }) => theme.colors.backgroundBody};
+  }
+`;
 
 export const H1 = styled.h1`
   padding: 10px 20px;
@@ -8,7 +23,7 @@ export const H1 = styled.h1`
   color: white;
   margin: 0;
   display: inline;
-  background-color: ${(props) => (props.color ? props.color : "#3f51b5")};
+  background-color: ${({ theme }) => theme.colors.main};
   border-radius: 5px;
   min-width: 180px;
   box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -35,9 +50,11 @@ export const Wrapper = styled.div`
   background-color: white;
   color: "black";
   position: relative;
+  background-color: ${({ theme }) => theme.colors.background};
 
   @media (max-width: 768px) {
     padding: 40px 10px 10px 10px;
+    width: 95%;
   }
 `;
 
@@ -67,11 +84,12 @@ export const StyledDivForList = styled.div`
       : "0.5fr 2fr 1fr 1fr 1.5fr 0.5fr"};
   padding: 10px;
   align-items: center;
-  background-color: rgba(180, 180, 180, 0.12);
+  background-color: ${({ theme }) => theme.colors.backgroundTable};
   transition: 150ms;
   border-radius: 2px;
   margin: 2px;
   column-gap: 5px;
+  color: ${({ theme }) => theme.colors.font};
 
   @media (max-width: 768px) {
     grid-template-columns: ${(props) =>
@@ -80,7 +98,7 @@ export const StyledDivForList = styled.div`
 `;
 
 export const TableHeader = styled(StyledDivForList)`
-  background-color: #3f51b5;
+  background-color: ${({ theme }) => theme.colors.main};
   color: white;
 `;
 export const ErrorDiv = styled.div`
@@ -111,9 +129,9 @@ export const StyledCurrencyButton = styled.button`
   top: 20px;
 
   color: white;
-  background-color: #3f51b5;
+  background-color: ${({ theme }) => theme.colors.main};
   outline: none;
-  border: solid #3f51b5 3px;
+  border: solid ${({ theme }) => theme.colors.main} 3px;
   box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
   ${(props) =>
@@ -132,7 +150,7 @@ export const StyledCurrencyButton = styled.button`
         `}
 
   &:hover {
-    background-color: #3f51a5;
+    background-color: ${({ theme }) => theme.colors.main};
     box-shadow: 3px 2px 20px rgba(0, 0, 0, 0.5),
       0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
@@ -161,13 +179,13 @@ export const ReceivedButton = styled.button`
   cursor: pointer;
   transition: 150ms;
   color: white;
-  background-color: #3f51b5;
+  background-color: ${({ theme }) => theme.colors.main};
   outline: none;
-  border: solid #3f51b5 3px;
+  border: solid ${({ theme }) => theme.colors.main} 3px;
   box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
   &:hover {
-    background-color: #3f51a5;
+    background-color: ${({ theme }) => theme.colors.main};
     box-shadow: 3px 2px 20px rgba(0, 0, 0, 0.5),
       0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
@@ -195,3 +213,40 @@ export const GridDiv = styled.div`
       props.repeatFormula ? props.repeatFormula : "1fr"};
   }
 `;
+
+export const StyledToolBar = styled(ToolBar)`
+  background-color: ${({ theme }) => theme.colors.main};
+`;
+
+export const DrawerItem = styled.div`
+  padding: 25px;
+  color: white;
+  width: 100%;
+  height: 1.5em;
+  transition: 100ms;
+
+  &:hover {
+    color: #3f51b5;
+    background-color: white;
+    cursor: pointer;
+  }
+`;
+
+export const StyledDrawer = styled.div`
+  background-color: ${({ theme }) => theme.colors.main};
+  height: 100%;
+  width: 220px;
+  overflow: hidden;
+`;
+
+export const searchInputProps = {
+  dark: { color: "#DFDFDF", backgroundColor: "#222" },
+};
+
+export const inputProps = {
+  dark: { color: "#DFDFDF" },
+};
+
+export const searchInputLabelProps = {
+  dark: { color: "#DFDFDF" },
+};

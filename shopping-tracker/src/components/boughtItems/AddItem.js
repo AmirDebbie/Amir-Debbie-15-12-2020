@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../../redux/actions";
+import { uuid } from "uuidv4";
 import {
   Modal,
   Button,
@@ -9,7 +10,12 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { StyledCurrencyButton, GridDiv } from "../../styles/styledComponents";
+import {
+  StyledCurrencyButton,
+  GridDiv,
+  searchInputLabelProps,
+  inputProps,
+} from "../../styles";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { useForm } from "react-hook-form";
@@ -17,12 +23,32 @@ import { ErrorButton, ActionButton } from "../formIcons";
 import { generateBrs } from "../../helpers";
 
 function AddItem() {
+  const { shoppingList, innerWidth, theme } = useSelector((state) => state);
+  const useStyles = makeStyles((muiTheme) =>
+    createStyles({
+      root: {
+        width: "100%",
+        textAlign: "center",
+      },
+      paper: {
+        position: "absolute",
+        width: "50%",
+        maxWidth: 700,
+        minWidth: 300,
+        backgroundColor: theme.includes("dark") ? "#3A3A3A" : "white",
+        borderRadius: 7,
+        color: theme.includes("dark") ? "white" : "black",
+        boxShadow: muiTheme.shadows[5],
+        padding: muiTheme.spacing(2, 4, 3),
+        outline: "none",
+      },
+    })
+  );
   const classes = useStyles();
   const modalStyle = getModalStyle();
   const [open, setOpen] = useState(false);
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
-  const { shoppingList, innerWidth } = useSelector((state) => state);
   const empty = Object.keys(errors).length === 0;
 
   const handleOpen = () => {
@@ -37,6 +63,7 @@ function AddItem() {
     data.deliveryDate = new Date(data.deliveryDate).valueOf();
     data.received = false;
     data.receivedDate = null;
+    data.id = uuid();
     console.log(data);
     dispatch(setList([...shoppingList, data]));
     handleClose();
@@ -70,6 +97,12 @@ function AddItem() {
                         required: "Product name is required",
                       })}
                       name="name"
+                      InputLabelProps={{
+                        style: searchInputLabelProps[theme],
+                      }}
+                      InputProps={{
+                        style: inputProps[theme],
+                      }}
                     />
                     {!empty ? (
                       errors.name ? (
@@ -89,6 +122,12 @@ function AddItem() {
                         required: "Store is required",
                       })}
                       name="store"
+                      InputLabelProps={{
+                        style: searchInputLabelProps[theme],
+                      }}
+                      InputProps={{
+                        style: inputProps[theme],
+                      }}
                     />
                     {!empty ? (
                       errors.store ? (
@@ -114,6 +153,12 @@ function AddItem() {
                         required: "Price in shekels is required",
                       })}
                       name="priceInShekels"
+                      InputLabelProps={{
+                        style: searchInputLabelProps[theme],
+                      }}
+                      InputProps={{
+                        style: inputProps[theme],
+                      }}
                     />
                     {!empty ? (
                       errors.priceInShekels ? (
@@ -127,7 +172,11 @@ function AddItem() {
                     ) : null}
                     {generateBrs(2)}
                     <FormControl>
-                      <FormHelperText>Estimated Delivery Date</FormHelperText>
+                      <FormHelperText
+                        style={{ color: theme.includes("dark") && "#DFDFDF" }}
+                      >
+                        Estimated Delivery Date
+                      </FormHelperText>
                       <TextField
                         type="date"
                         id="deliveryDate"
@@ -136,18 +185,23 @@ function AddItem() {
                           required: "Delivery Date is required",
                         })}
                         style={{ width: "200px" }}
+                        InputLabelProps={{
+                          style: searchInputLabelProps[theme],
+                        }}
+                        InputProps={{
+                          style: inputProps[theme],
+                        }}
                       />
                     </FormControl>
-                    {!empty ? (
-                      errors.deliveryDate ? (
+                    {!empty &&
+                      (errors.deliveryDate ? (
                         <ErrorButton
                           id="deliveryDateError"
                           tooltipTitle={errors.deliveryDate.message}
                         />
                       ) : (
                         <ActionButton />
-                      )
-                    ) : null}
+                      ))}
                   </div>
                 </GridDiv>
                 {generateBrs(2)}
@@ -177,23 +231,3 @@ function getModalStyle() {
     transform: "translate(-50%, -50%)",
   };
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      width: "100%",
-      textAlign: "center",
-    },
-    paper: {
-      position: "absolute",
-      width: "50%",
-      maxWidth: 700,
-      minWidth: 300,
-      backgroundColor: theme.palette.background.paper,
-      borderRadius: 7,
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      outline: "none",
-    },
-  })
-);

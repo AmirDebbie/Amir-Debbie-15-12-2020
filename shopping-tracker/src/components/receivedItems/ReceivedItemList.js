@@ -8,13 +8,17 @@ import {
   StyledDivForList,
   ErrorDiv,
   Center,
+  searchInputProps,
+  searchInputLabelProps,
 } from "../../styles/styledComponents";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 import TextField from "@material-ui/core/TextField";
 
 function ReceivedItemList() {
-  const { shoppingList, currency, innerWidth } = useSelector((state) => state);
+  const { shoppingList, currency, innerWidth, theme } = useSelector(
+    (state) => state
+  );
   const [filterInput, setFilterInput] = useState("");
   const [filteredList, setFilteredList] = useState(shoppingList);
 
@@ -54,6 +58,12 @@ function ReceivedItemList() {
           value={filterInput}
           label="Search"
           onChange={handleFilter}
+          InputLabelProps={{
+            style: searchInputLabelProps[theme],
+          }}
+          InputProps={{
+            style: searchInputProps[theme],
+          }}
         />
       </Center>
       {currency.error.length > 0 && (

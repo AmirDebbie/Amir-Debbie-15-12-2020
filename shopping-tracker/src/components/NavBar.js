@@ -1,30 +1,32 @@
-import React, { useState, useContext } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   AppBar,
-  Toolbar,
   IconButton,
   Typography,
   Drawer,
+  Switch,
+  Tooltip,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import styled from "styled-components";
-import { StyledLink } from "../styles/styledComponents";
-
+import { setTheme } from "../redux/actions";
+import { StyledLink, StyledToolBar, StyledDrawer, DrawerItem } from "../styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 function NavAppBar() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const { innerWidth } = useSelector((state) => state);
+  const { innerWidth, theme } = useSelector((state) => state);
 
   const handleDrawer = () => {
     setOpen(true);
   };
+  console.log(theme);
 
   return (
     <div>
       <AppBar position="static">
-        <Toolbar>
+        <StyledToolBar>
           <IconButton
             onClick={handleDrawer}
             color="inherit"
@@ -35,14 +37,25 @@ function NavAppBar() {
           </IconButton>
           <StyledLink to="/list">
             <Typography
-              style={{ marginLeft: 30 }}
-              variant={innerWidth > 400 ? "h4" : "h5"}
+              style={{ marginLeft: innerWidth > 470 ? 30 : 0 }}
+              variant={innerWidth > 470 ? "h4" : innerWidth > 350 ? "h5" : "h6"}
             >
-              <ShoppingCartIcon />
+              {innerWidth > 470 && <ShoppingCartIcon />}
               &nbsp; Shopping Tracker
             </Typography>
           </StyledLink>
-        </Toolbar>
+          <Typography style={{ position: "absolute", right: 10, top: 15 }}>
+            <Tooltip title="Change Theme">
+              <Switch
+                checked={theme === "dark"}
+                onChange={() =>
+                  dispatch(setTheme(theme === "dark" ? "light" : "dark"))
+                }
+                name="checkedA"
+              />
+            </Tooltip>
+          </Typography>
+        </StyledToolBar>
       </AppBar>
       <Drawer
         anchor="left"
@@ -69,26 +82,5 @@ function NavAppBar() {
     </div>
   );
 }
-
-const DrawerItem = styled.div`
-  padding: 25px;
-  color: white;
-  width: 100%;
-  height: 1.5em;
-  transition: 100ms;
-
-  &:hover {
-    color: #3f51b5;
-    background-color: white;
-    cursor: pointer;
-  }
-`;
-
-const StyledDrawer = styled.div`
-  background-color: #3f51b5;
-  height: 100%;
-  width: 220px;
-  overflow: hidden;
-`;
 
 export default NavAppBar;
