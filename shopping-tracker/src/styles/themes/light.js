@@ -5,5 +5,6 @@ export const lightTheme = {
     background: "#FFFFFF",
     main: "#3f51b5",
     font: "black",
+    tableFooter: "lightgrey",
   },
 };

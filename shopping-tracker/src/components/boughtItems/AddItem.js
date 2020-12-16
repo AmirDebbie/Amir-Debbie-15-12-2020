@@ -63,6 +63,7 @@ function AddItem() {
     data.deliveryDate = new Date(data.deliveryDate).valueOf();
     data.received = false;
     data.receivedDate = null;
+    data.priceInShekels = Number(data.priceInShekels);
     data.id = uuidv4();
     dispatch(setList([...shoppingList, data]));
     handleClose();

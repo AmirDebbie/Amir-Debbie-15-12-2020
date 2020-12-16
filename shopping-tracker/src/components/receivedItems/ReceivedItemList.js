@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { capitalize, formatToIsraeliDate } from "../../helpers";
 import {
@@ -10,6 +10,7 @@ import {
   Center,
   searchInputProps,
   searchInputLabelProps,
+  TableFooter,
 } from "../../styles";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
@@ -20,7 +21,9 @@ function ReceivedItemList() {
     (state) => state
   );
   const [filterInput, setFilterInput] = useState("");
-  const [filteredList, setFilteredList] = useState(shoppingList);
+  const [filteredList, setFilteredList] = useState(
+    shoppingList.filter((item) => item.received)
+  );
 
   const handleFilter = (e) => {
     const input = e.target.value;
@@ -50,6 +53,11 @@ function ReceivedItemList() {
       ? priceInShekels
       : Math.round(priceInShekels / currency.dif);
   };
+
+  const filteredListPriceSum = useMemo(() => {
+    return filteredList.reduce((acc, item) => acc + item.priceInShekels, 0);
+  }, [filteredList]);
+
   return (
     <>
       <Center>
@@ -97,7 +105,7 @@ function ReceivedItemList() {
           </TableHeader>
         </li>
         {filteredList
-          .filter((item) => item.received)
+
           .sort((a, b) => a.receivedDate - b.receivedDate)
           .map((item) => (
             <li className="receivedListItem" key={item.id}>
@@ -121,6 +129,18 @@ function ReceivedItemList() {
               </StyledDivForList>
             </li>
           ))}
+        <li>
+          <TableFooter repeatFormula="0.5fr 3fr 3fr">
+            {innerWidth > 768 && <LocalMallIcon />}
+            <StyledSpan weight="bold">
+              Amount of Products: {filteredList.length}
+            </StyledSpan>
+            <StyledSpan weight="bold">
+              Sum of Prices: {getPrice(filteredListPriceSum)}
+              {currency.current === "ILS" ? "₪" : "$"}
+            </StyledSpan>
+          </TableFooter>
+        </li>
       </StyledUl>
     </>
   );

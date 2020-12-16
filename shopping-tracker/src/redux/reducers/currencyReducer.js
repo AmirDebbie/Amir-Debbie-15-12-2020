@@ -6,13 +6,19 @@ import {
 
 const currencyState = {
   current: "ILS",
-  dif: 3.2,
+  dif: 3.3,
   error: "",
 };
+
+const previousCurrency = localStorage.getItem("currency");
+if (previousCurrency) {
+  currencyState.current = previousCurrency;
+}
 
 export default function currencyReducer(state = currencyState, action) {
   switch (action.type) {
     case TOGGLE_CURRENCY:
+      localStorage.setItem("currency", state.current === "ILS" ? "USD" : "ILS");
       return {
         ...state,
         current: state.current === "ILS" ? "USD" : "ILS",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../../redux/actions";
 import { capitalize, formatToIsraeliDate } from "../../helpers";
@@ -12,6 +12,7 @@ import {
   Center,
   searchInputProps,
   searchInputLabelProps,
+  TableFooter,
 } from "../../styles";
 import { Tooltip, TextField } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
@@ -23,7 +24,9 @@ function ItemList() {
     (state) => state
   );
   const [filterInput, setFilterInput] = useState("");
-  const [filteredList, setFilteredList] = useState(shoppingList);
+  const [filteredList, setFilteredList] = useState(
+    shoppingList.filter((item) => !item.received)
+  );
   const handleFilter = (e) => {
     const input = e.target.value;
     setFilterInput(input);
@@ -48,7 +51,7 @@ function ItemList() {
   };
 
   useEffect(() => {
-    setFilteredList(shoppingList);
+    setFilteredList(shoppingList.filter((item) => !item.received));
     setFilterInput("");
   }, [shoppingList]);
 
@@ -68,6 +71,11 @@ function ItemList() {
       ? priceInShekels
       : Math.round(priceInShekels / currency.dif);
   };
+
+  const filteredListPriceSum = useMemo(() => {
+    return filteredList.reduce((acc, item) => acc + item.priceInShekels, 0);
+  }, [filteredList]);
+
   return (
     <>
       <Center>
@@ -110,7 +118,6 @@ function ItemList() {
           </TableHeader>
         </li>
         {filteredList
-          .filter((item) => !item.received)
           .sort((a, b) => a.deliveryDate - b.deliveryDate)
           .map((item, i) => (
             <li className="itemListItem" key={item.id}>
@@ -138,6 +145,18 @@ function ItemList() {
               </StyledDivForList>
             </li>
           ))}
+        <li>
+          <TableFooter repeatFormula="0.5fr 3fr 3fr">
+            {innerWidth > 768 && <LocalMallIcon />}
+            <StyledSpan weight="bold">
+              Amount of Products: {filteredList.length}
+            </StyledSpan>
+            <StyledSpan weight="bold">
+              Sum of Prices: {getPrice(filteredListPriceSum)}
+              {currency.current === "ILS" ? "₪" : "$"}
+            </StyledSpan>
+          </TableFooter>
+        </li>
       </StyledUl>
     </>
   );

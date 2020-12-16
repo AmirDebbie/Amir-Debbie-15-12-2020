@@ -5,5 +5,6 @@ export const darkTheme = {
     background: "#2A2A2A",
     main: "#3C4479",
     font: "white",
+    tableFooter: "#222",
   },
 };

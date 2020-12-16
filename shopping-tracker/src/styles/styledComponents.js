@@ -93,6 +93,15 @@ export const TableHeader = styled(StyledDivForList)`
   background-color: ${({ theme }) => theme.colors.main};
   color: white;
 `;
+
+export const TableFooter = styled(StyledDivForList)`
+  background-color: ${({ theme }) => theme.colors.tableFooter};
+
+  @media (max-width: 768px) {
+    grid-template-columns: 3fr 3fr;
+  }
+`;
+
 export const ErrorDiv = styled.div`
   display: flex;
   align-items: center;
