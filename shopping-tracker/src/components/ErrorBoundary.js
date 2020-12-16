@@ -1,5 +1,5 @@
 import React from "react";
-import { DivError } from "../styles";
+import { ErrorDiv } from "../styles";
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -12,9 +12,9 @@ export default class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <DivError>
+        <ErrorDiv>
           <h1>Oops! An Error Occurred!</h1>
-        </DivError>
+        </ErrorDiv>
       );
     }
 

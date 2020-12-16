@@ -7,7 +7,7 @@ import {
   StyledUl,
   StyledSpan,
   StyledDivForList,
-  ErrorDiv,
+  APIErrorDiv,
   ReceivedButton,
   Center,
   searchInputProps,
@@ -109,11 +109,11 @@ function ItemList() {
       {currency.error.length > 0 && (
         <>
           <br />
-          <ErrorDiv>
+          <APIErrorDiv>
             <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
             &nbsp;
             {currency.error}
-          </ErrorDiv>
+          </APIErrorDiv>
         </>
       )}
       <br />
