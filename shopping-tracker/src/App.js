@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
@@ -45,7 +45,7 @@ function App() {
     return () => {
       clearInterval(currencyInterval);
     };
-  }, [fetchCurrency]);
+  }, [fetchCurrency, dispatch]);
   return (
     <Router>
       <NavBar />

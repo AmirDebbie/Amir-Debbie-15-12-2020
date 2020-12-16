@@ -1,4 +1,4 @@
-import { SET_LIST, TOGGLE_CURRENCY } from "../actionTypes";
+import { SET_LIST } from "../actionTypes";
 
 const shoppingListMock = [
   {

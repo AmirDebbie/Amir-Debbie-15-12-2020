@@ -37,13 +37,14 @@ function AddItem() {
     data.deliveryDate = new Date(data.deliveryDate).valueOf();
     data.received = false;
     data.receivedDate = null;
+    console.log(data);
     dispatch(setList([...shoppingList, data]));
     handleClose();
   };
 
   return (
     <>
-      <StyledCurrencyButton left onClick={handleOpen}>
+      <StyledCurrencyButton id="addItemButton" left onClick={handleOpen}>
         +
       </StyledCurrencyButton>
       <Modal
@@ -72,7 +73,10 @@ function AddItem() {
                     />
                     {!empty ? (
                       errors.name ? (
-                        <ErrorButton tooltipTitle={errors.name.message} />
+                        <ErrorButton
+                          id="nameError"
+                          tooltipTitle={errors.name.message}
+                        />
                       ) : (
                         <ActionButton />
                       )
@@ -88,7 +92,10 @@ function AddItem() {
                     />
                     {!empty ? (
                       errors.store ? (
-                        <ErrorButton tooltipTitle={errors.store.message} />
+                        <ErrorButton
+                          id="storeError"
+                          tooltipTitle={errors.store.message}
+                        />
                       ) : (
                         <ActionButton />
                       )
@@ -100,6 +107,10 @@ function AddItem() {
                       id="priceInShekels"
                       label="Price In Shekels"
                       inputRef={register({
+                        pattern: {
+                          value: /^[+-]?\d+(\.\d+)?$/,
+                          message: "Please enter a valid price",
+                        },
                         required: "Price in shekels is required",
                       })}
                       name="priceInShekels"
@@ -107,6 +118,7 @@ function AddItem() {
                     {!empty ? (
                       errors.priceInShekels ? (
                         <ErrorButton
+                          id="priceError"
                           tooltipTitle={errors.priceInShekels.message}
                         />
                       ) : (
@@ -129,6 +141,7 @@ function AddItem() {
                     {!empty ? (
                       errors.deliveryDate ? (
                         <ErrorButton
+                          id="deliveryDateError"
                           tooltipTitle={errors.deliveryDate.message}
                         />
                       ) : (
@@ -138,7 +151,12 @@ function AddItem() {
                   </div>
                 </GridDiv>
                 {generateBrs(2)}
-                <Button variant="contained" color="primary" type="submit">
+                <Button
+                  id="submitButton"
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                >
                   Add
                 </Button>
               </form>

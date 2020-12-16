@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../../redux/actions";
 import { capitalize, formatToIsraeliDate } from "../../helpers";
@@ -44,6 +44,11 @@ function ItemList() {
     }
     setFilteredList(foundItems);
   };
+
+  useEffect(() => {
+    setFilteredList(shoppingList);
+    setFilterInput("");
+  }, [shoppingList]);
 
   const receiveItem = (id) => {
     const list = shoppingList.map((item) => {
@@ -98,7 +103,7 @@ function ItemList() {
           .filter((item) => !item.received)
           .sort((a, b) => a.deliveryDate - b.deliveryDate)
           .map((item) => (
-            <li key={item.id}>
+            <li className="itemListItem" key={item.id}>
               <StyledDivForList>
                 {innerWidth > 768 && <LocalMallIcon />}
                 <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
