@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useSelector } from "react-redux";
 import {
   AppBar,
   Toolbar,
@@ -7,17 +8,14 @@ import {
   Drawer,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import PeopleIcon from "@material-ui/icons/People";
-import WorkIcon from "@material-ui/icons/Work";
-import BusinessIcon from "@material-ui/icons/Business";
 import styled from "styled-components";
 import { StyledLink } from "../styles/styledComponents";
-import ClassIcon from "@material-ui/icons/Class";
-import TimelineIcon from "@material-ui/icons/Timeline";
+
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 function NavAppBar() {
   const [open, setOpen] = useState(false);
+  const { innerWidth } = useSelector((state) => state);
 
   const handleDrawer = () => {
     setOpen(true);
@@ -36,7 +34,10 @@ function NavAppBar() {
             <Menu />
           </IconButton>
           <StyledLink to="/list">
-            <Typography style={{ marginLeft: 30 }} variant="h4">
+            <Typography
+              style={{ marginLeft: 30 }}
+              variant={innerWidth > 400 ? "h4" : "h5"}
+            >
               <ShoppingCartIcon />
               &nbsp; Shopping Tracker
             </Typography>

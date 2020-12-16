@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   requestCurrencySuccess,
   requestCurrencyFailure,
@@ -11,6 +11,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { setInnerWidth } from "./redux/actions";
 import Bought from "./components/boughtItems/Bought";
 import Received from "./components/receivedItems/Received";
 import NotFound from "./components/NotFound";
@@ -34,10 +35,16 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
+    window.addEventListener("resize", () => {
+      dispatch(setInnerWidth(window.innerWidth));
+    });
+
     fetchCurrency();
     const currencyInterval = setInterval(fetchCurrency, 10 * 1000);
 
-    return () => clearInterval(currencyInterval);
+    return () => {
+      clearInterval(currencyInterval);
+    };
   }, [fetchCurrency]);
   return (
     <Router>

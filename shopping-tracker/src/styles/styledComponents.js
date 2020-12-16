@@ -13,15 +13,19 @@ export const H1 = styled.h1`
   min-width: 180px;
   box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
 `;
 
 export const TitleWrapper = styled.div`
   height: 0px;
-  transform: translate(0, -60px);
+  transform: translateY(-60px);
 `;
 
 export const Wrapper = styled.div`
-  margin: 5% auto;
+  margin: 60px auto;
   width: 80%;
   padding: 40px;
   border-radius: 7px;
@@ -31,6 +35,10 @@ export const Wrapper = styled.div`
   background-color: white;
   color: "black";
   position: relative;
+
+  @media (max-width: 768px) {
+    padding: 40px 10px 10px 10px;
+  }
 `;
 
 export const Center = styled.div`
@@ -45,6 +53,10 @@ export const StyledUl = styled.ul`
 export const StyledSpan = styled.span`
   font-weight: ${(props) => props.weight === "bold" && "bold"};
   text-align: ${(props) => props.center && "center"};
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const StyledDivForList = styled.div`
@@ -59,6 +71,12 @@ export const StyledDivForList = styled.div`
   transition: 150ms;
   border-radius: 2px;
   margin: 2px;
+  column-gap: 5px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: ${(props) =>
+      props.repeatFormula ? props.repeatFormula : "2fr 1fr 1fr 1.5fr 0.5fr"};
+  }
 `;
 
 export const TableHeader = styled(StyledDivForList)`
@@ -102,15 +120,28 @@ export const StyledCurrencyButton = styled.button`
     props.left
       ? css`
           left: 20px;
+          @media (max-width: 768px) {
+            left: 10px;
+          }
         `
       : css`
           right: 20px;
+          @media (max-width: 768px) {
+            right: 10px;
+          }
         `}
 
   &:hover {
     background-color: #3f51a5;
     box-shadow: 3px 2px 20px rgba(0, 0, 0, 0.5),
       0 0 40px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  @media (max-width: 768px) {
+    top: 10px;
+    height: 40px;
+    width: 40px;
+    font-size: 17px;
   }
 `;
 
@@ -140,6 +171,12 @@ export const ReceivedButton = styled.button`
     box-shadow: 3px 2px 20px rgba(0, 0, 0, 0.5),
       0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
+
+  @media (max-width: 768px) {
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -152,4 +189,9 @@ export const GridDiv = styled.div`
   width: 95%;
   grid-template-columns: ${(props) =>
     props.repeatFormula ? props.repeatFormula : "1fr 1fr"};
+
+  @media (max-width: 880px) {
+    grid-template-columns: ${(props) =>
+      props.repeatFormula ? props.repeatFormula : "1fr"};
+  }
 `;

@@ -22,7 +22,7 @@ function AddItem() {
   const [open, setOpen] = useState(false);
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
-  const { shoppingList } = useSelector((state) => state);
+  const { shoppingList, innerWidth } = useSelector((state) => state);
   const empty = Object.keys(errors).length === 0;
 
   const handleOpen = () => {
@@ -94,6 +94,7 @@ function AddItem() {
                       )
                     ) : null}
                   </div>
+                  {innerWidth < 880 && <br />}
                   <div>
                     <TextField
                       id="priceInShekels"

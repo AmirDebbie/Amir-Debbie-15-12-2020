@@ -14,7 +14,7 @@ import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 import TextField from "@material-ui/core/TextField";
 
 function ReceivedItemList() {
-  const { shoppingList, currency } = useSelector((state) => state);
+  const { shoppingList, currency, innerWidth } = useSelector((state) => state);
   const [filterInput, setFilterInput] = useState("");
   const [filteredList, setFilteredList] = useState(shoppingList);
 
@@ -69,8 +69,14 @@ function ReceivedItemList() {
       <br />
       <StyledUl>
         <li>
-          <TableHeader repeatFormula="0.5fr 1.5fr 1fr 1fr 1.5fr">
-            <LocalMallIcon />
+          <TableHeader
+            repeatFormula={
+              innerWidth > 550
+                ? "0.5fr 1.5fr 1fr 1fr 1.5fr"
+                : "1.5fr 1fr 1fr 1.5fr"
+            }
+          >
+            {innerWidth > 550 && <LocalMallIcon />}
             <StyledSpan weight="bold">Product</StyledSpan>
             <StyledSpan weight="bold">Store</StyledSpan>
             <StyledSpan weight="bold">Price</StyledSpan>
@@ -84,8 +90,14 @@ function ReceivedItemList() {
           .sort((a, b) => a.receivedDate - b.receivedDate)
           .map((item) => (
             <li key={item.id}>
-              <StyledDivForList repeatFormula="0.5fr 1.5fr 1fr 1fr 1.5fr">
-                <LocalMallIcon />
+              <StyledDivForList
+                repeatFormula={
+                  innerWidth > 550
+                    ? "0.5fr 1.5fr 1fr 1fr 1.5fr"
+                    : "1.5fr 1fr 1fr 1.5fr"
+                }
+              >
+                {innerWidth > 550 && <LocalMallIcon />}
                 <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
                 <StyledSpan>{capitalize(item.store)}</StyledSpan>
                 <StyledSpan>

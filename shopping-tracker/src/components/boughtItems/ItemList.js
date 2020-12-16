@@ -18,7 +18,7 @@ import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
 
 function ItemList() {
   const dispatch = useDispatch();
-  const { shoppingList, currency } = useSelector((state) => state);
+  const { shoppingList, currency, innerWidth } = useSelector((state) => state);
   const [filterInput, setFilterInput] = useState("");
   const [filteredList, setFilteredList] = useState(shoppingList);
 
@@ -85,7 +85,7 @@ function ItemList() {
       <StyledUl>
         <li>
           <TableHeader>
-            <LocalMallIcon />
+            {innerWidth > 768 && <LocalMallIcon />}
             <StyledSpan weight="bold">Product</StyledSpan>
             <StyledSpan weight="bold">Store</StyledSpan>
             <StyledSpan weight="bold">Price</StyledSpan>
@@ -100,7 +100,7 @@ function ItemList() {
           .map((item) => (
             <li key={item.id}>
               <StyledDivForList>
-                <LocalMallIcon />
+                {innerWidth > 768 && <LocalMallIcon />}
                 <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
                 <StyledSpan>{capitalize(item.store)}</StyledSpan>
                 <StyledSpan>
