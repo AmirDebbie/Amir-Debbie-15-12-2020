@@ -17,6 +17,7 @@ import {
 import { Tooltip, TextField } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
+import Swal from "sweetalert2";
 
 function ItemList() {
   const dispatch = useDispatch();
@@ -56,14 +57,25 @@ function ItemList() {
   }, [shoppingList]);
 
   const receiveItem = (id) => {
-    const list = shoppingList.map((item) => {
-      if (item.id === id) {
-        item.received = true;
-        item.receivedDate = Date.now();
+    const selectedItem = shoppingList.find((item) => item.id === id);
+    Swal.fire({
+      title: `Set ${selectedItem.name} As Received?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.value) {
+        const list = shoppingList.map((item) => {
+          if (item.id === id) {
+            item.received = true;
+            item.receivedDate = Date.now();
+          }
+          return item;
+        });
+        dispatch(setList(list));
       }
-      return item;
     });
-    dispatch(setList(list));
   };
 
   const getPrice = (priceInUSD) => {

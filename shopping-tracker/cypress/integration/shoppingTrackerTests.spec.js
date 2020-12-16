@@ -78,19 +78,28 @@ describe("Shopping Tracker Tests", () => {
 
   it("Tests the ability to mark item as received", () => {
     cy.get(".itemListItem").should("have.length", 5);
+
+    cy.get("#openMenu").click();
+    cy.get("#receivedItems").click();
+    cy.get(".receivedListItem").should("have.length", 3);
+    cy.get("#openMenu").click();
+    cy.get("#boughtItems").click();
+
     cy.get("#storesButton").click();
     cy.get("#ebay").contains("1");
     cy.get("#itemsButton").click();
     cy.get("#receiveButton0").click();
+    cy.get(".swal2-confirm").click();
     cy.get("#storesButton").click();
     cy.get("#ebay").should("not.exist");
     cy.get("#itemsButton").click();
     cy.get(".itemListItem").should("have.length", 4);
     cy.get("#receiveButton0").click();
+    cy.get(".swal2-confirm").click();
     cy.get(".itemListItem").should("have.length", 3);
     cy.get("#openMenu").click();
     cy.get("#receivedItems").click();
-    cy.get(".receivedListItem").should("have.length", 2);
+    cy.get(".receivedListItem").should("have.length", 5);
     cy.get("#storesButton").click();
     cy.get("#ebay").contains("1");
   });

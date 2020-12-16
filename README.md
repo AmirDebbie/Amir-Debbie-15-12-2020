@@ -20,13 +20,12 @@ Local storage **is** used to save user preferences such as theme and currency.
 
 5. If you want, run `npx cypress open` to view and run the tests.
 
-## Technologies
+## Main Technologies
 
 - React
-- React Hooks
 - Redux
 - styled-components
-- Testing (Cypress Library).
+- Testing (Cypress Library)
 
 ## Presentation GIF
 
