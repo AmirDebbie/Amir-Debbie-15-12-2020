@@ -32,6 +32,7 @@ function NavAppBar() {
             color="inherit"
             edge="start"
             aria-label="menu"
+            id="openMenu"
           >
             <Menu />
           </IconButton>
@@ -66,13 +67,13 @@ function NavAppBar() {
       >
         <StyledDrawer>
           <StyledLink to="/list">
-            <DrawerItem onClick={() => setOpen(false)}>
+            <DrawerItem id="boughtItems" onClick={() => setOpen(false)}>
               Bought Items
               <ShoppingCartIcon style={{ position: "absolute", right: 10 }} />
             </DrawerItem>
           </StyledLink>
           <StyledLink to="/received">
-            <DrawerItem onClick={() => setOpen(false)}>
+            <DrawerItem id="receivedItems" onClick={() => setOpen(false)}>
               Received Items
               <ShoppingCartIcon style={{ position: "absolute", right: 10 }} />
             </DrawerItem>

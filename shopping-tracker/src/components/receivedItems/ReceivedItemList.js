@@ -99,7 +99,7 @@ function ReceivedItemList() {
           .filter((item) => item.received)
           .sort((a, b) => a.receivedDate - b.receivedDate)
           .map((item) => (
-            <li key={item.id}>
+            <li className="receivedListItem" key={item.id}>
               <StyledDivForList
                 repeatFormula={
                   innerWidth > 550

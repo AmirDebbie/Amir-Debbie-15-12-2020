@@ -4,6 +4,6 @@ import IconButton from "@material-ui/core/IconButton";
 
 export const ActionButton = () => (
   <IconButton style={{ cursor: "default" }}>
-    <DoneIcon color="action" />
+    <DoneIcon style={{ color: "green" }} />
   </IconButton>
 );

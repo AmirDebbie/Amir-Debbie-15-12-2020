@@ -71,5 +71,12 @@ describe("Shopping Tracker Tests", () => {
 
   it("Tests the ability to mark item as received", () => {
     cy.get(".itemListItem").should("have.length", 5);
+    cy.get("#receiveButton1").click();
+    cy.get(".itemListItem").should("have.length", 4);
+    cy.get("#receiveButton1").click();
+    cy.get(".itemListItem").should("have.length", 3);
+    cy.get("#openMenu").click();
+    cy.get("#receivedItems").click();
+    cy.get(".receivedListItem").should("have.length", 2);
   });
 });
