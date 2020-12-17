@@ -33,7 +33,7 @@ jobs:
       working-directory: ./shopping-tracker
 
     - name: Start the application
-      run: npm start
+      run: npm start & npx wait-on http://localhost:3000
       working-directory: ./shopping-tracker
 
     - name: Run tests
