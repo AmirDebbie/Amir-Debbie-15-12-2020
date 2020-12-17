@@ -51,8 +51,8 @@ const StoreList = () => {
                   {stores[store].amount}
                 </StyledSpan>
                 <StyledSpan id={`${store.split(" ").join("")}Price`} center>
-                  {getPrice(stores[store].price, currency)}
                   {currency.current === "ILS" ? "₪" : "$"}
+                  {getPrice(stores[store].price, currency)}
                 </StyledSpan>
               </StyledDivForList>
             </li>

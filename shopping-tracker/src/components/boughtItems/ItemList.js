@@ -142,8 +142,8 @@ function ItemList() {
                   <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
                   <StyledSpan>{capitalize(item.store)}</StyledSpan>
                   <StyledSpan>
-                    {getPrice(item.priceInUSD, currency)}
                     {currency.current === "ILS" ? "₪" : "$"}
+                    {getPrice(item.priceInUSD, currency)}
                   </StyledSpan>
                   <StyledSpan center>
                     {formatToIsraeliDate(item.deliveryDate)}
@@ -169,8 +169,8 @@ function ItemList() {
               Amount of Products: {filteredList.length}
             </StyledSpan>
             <StyledSpan weight="bold">
-              Sum of Prices: {getPrice(filteredListPriceSum, currency)}
-              {currency.current === "ILS" ? "₪" : "$"}
+              Sum of Prices: {currency.current === "ILS" ? "₪" : "$"}
+              {getPrice(filteredListPriceSum, currency)}
             </StyledSpan>
           </TableFooter>
         </li>
