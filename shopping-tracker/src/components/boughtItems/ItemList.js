@@ -124,34 +124,44 @@ function ItemList() {
             </StyledSpan>
           </TableHeader>
         </li>
-        {filteredList
-          .sort((a, b) => a.deliveryDate - b.deliveryDate)
-          .map((item, i) => (
-            <li className="itemListItem" key={item.id}>
-              <StyledDivForList>
-                {innerWidth > 768 && <LocalMallIcon />}
-                <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
-                <StyledSpan>{capitalize(item.store)}</StyledSpan>
-                <StyledSpan>
-                  {getPrice(item.priceInUSD, currency)}
-                  {currency.current === "ILS" ? "₪" : "$"}
-                </StyledSpan>
-                <StyledSpan center>
-                  {formatToIsraeliDate(item.deliveryDate)}
-                </StyledSpan>
-                <StyledSpan center>
-                  <Tooltip title="Check item as received">
-                    <ReceivedButton
-                      id={`receiveButton${i}`}
-                      onClick={() => receiveItem(item.id)}
-                    >
-                      ✓
-                    </ReceivedButton>
-                  </Tooltip>
-                </StyledSpan>
-              </StyledDivForList>
-            </li>
-          ))}
+        {filteredList.length === 0 ? (
+          <li>
+            <StyledDivForList repeatFormula="1fr">
+              <StyledSpan center weight="bold">
+                You haven't bought any new items!
+              </StyledSpan>
+            </StyledDivForList>
+          </li>
+        ) : (
+          filteredList
+            .sort((a, b) => a.deliveryDate - b.deliveryDate)
+            .map((item, i) => (
+              <li className="itemListItem" key={item.id}>
+                <StyledDivForList>
+                  {innerWidth > 768 && <LocalMallIcon />}
+                  <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
+                  <StyledSpan>{capitalize(item.store)}</StyledSpan>
+                  <StyledSpan>
+                    {getPrice(item.priceInUSD, currency)}
+                    {currency.current === "ILS" ? "₪" : "$"}
+                  </StyledSpan>
+                  <StyledSpan center>
+                    {formatToIsraeliDate(item.deliveryDate)}
+                  </StyledSpan>
+                  <StyledSpan center>
+                    <Tooltip title="Check item as received">
+                      <ReceivedButton
+                        id={`receiveButton${i}`}
+                        onClick={() => receiveItem(item.id)}
+                      >
+                        ✓
+                      </ReceivedButton>
+                    </Tooltip>
+                  </StyledSpan>
+                </StyledDivForList>
+              </li>
+            ))
+        )}
         <li>
           <TableFooter repeatFormula="0.5fr 3fr 3fr">
             {innerWidth > 768 && <LocalMallIcon />}

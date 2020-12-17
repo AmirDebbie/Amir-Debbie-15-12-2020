@@ -106,31 +106,40 @@ function ReceivedItemList() {
             </StyledSpan>
           </TableHeader>
         </li>
-        {filteredList
-
-          .sort((a, b) => a.receivedDate - b.receivedDate)
-          .map((item) => (
-            <li className="receivedListItem" key={item.id}>
-              <StyledDivForList
-                repeatFormula={
-                  innerWidth > 550
-                    ? "0.5fr 1.5fr 1fr 1fr 1.5fr"
-                    : "1.5fr 1fr 1fr 1.5fr"
-                }
-              >
-                {innerWidth > 550 && <LocalMallIcon />}
-                <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
-                <StyledSpan>{capitalize(item.store)}</StyledSpan>
-                <StyledSpan>
-                  {getPrice(item.priceInUSD)}
-                  {currency.current === "ILS" ? "₪" : "$"}
-                </StyledSpan>
-                <StyledSpan center>
-                  {formatToIsraeliDate(item.receivedDate)}
-                </StyledSpan>
-              </StyledDivForList>
-            </li>
-          ))}
+        {filteredList.length === 0 ? (
+          <li>
+            <StyledDivForList repeatFormula="1fr">
+              <StyledSpan center weight="bold">
+                You haven't bought any new items!
+              </StyledSpan>
+            </StyledDivForList>
+          </li>
+        ) : (
+          filteredList
+            .sort((a, b) => a.receivedDate - b.receivedDate)
+            .map((item) => (
+              <li className="receivedListItem" key={item.id}>
+                <StyledDivForList
+                  repeatFormula={
+                    innerWidth > 550
+                      ? "0.5fr 1.5fr 1fr 1fr 1.5fr"
+                      : "1.5fr 1fr 1fr 1.5fr"
+                  }
+                >
+                  {innerWidth > 550 && <LocalMallIcon />}
+                  <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
+                  <StyledSpan>{capitalize(item.store)}</StyledSpan>
+                  <StyledSpan>
+                    {getPrice(item.priceInUSD)}
+                    {currency.current === "ILS" ? "₪" : "$"}
+                  </StyledSpan>
+                  <StyledSpan center>
+                    {formatToIsraeliDate(item.receivedDate)}
+                  </StyledSpan>
+                </StyledDivForList>
+              </li>
+            ))
+        )}
         <li>
           <TableFooter repeatFormula="0.5fr 3fr 3fr">
             {innerWidth > 768 && <LocalMallIcon />}
