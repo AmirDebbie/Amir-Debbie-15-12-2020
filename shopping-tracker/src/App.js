@@ -28,8 +28,6 @@ function App() {
     }
   }, [dispatch]);
 
-  console.log("Deployed by cicd");
-
   const setInnerWidthEventListener = useCallback(() => {
     dispatch(setInnerWidth(window.innerWidth));
   }, [dispatch]);
