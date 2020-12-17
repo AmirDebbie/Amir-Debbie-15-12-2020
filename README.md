@@ -12,6 +12,12 @@ Local storage **is** used to save user preferences such as theme and currency.
 
 https://amirdebbie.github.io/Amir-Debbie-15-12-2020/
 
+**This app is also a PWA (Progressive Web App), meaning you can download it.**
+To download the app:
+- Open the link to GitHub pages.
+- On the url bar, you should see a plus icon or an arrow icon - click on it and open the app.
+- The app will open in PWA form and an icon will be added to your desktop.
+
 ## How To Run
 1. Clone the repo to your machine
 
