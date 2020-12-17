@@ -113,16 +113,15 @@ function AddItem() {
                         ),
                       }}
                     />
-                    {!empty ? (
-                      errors.name ? (
+                    {!empty &&
+                      (errors.name ? (
                         <ErrorButton
                           id="nameError"
                           tooltipTitle={errors.name.message}
                         />
                       ) : (
                         <ActionButton />
-                      )
-                    ) : null}
+                      ))}
                     {generateBrs(2)}
                     <TextField
                       id="store"
@@ -143,16 +142,15 @@ function AddItem() {
                         ),
                       }}
                     />
-                    {!empty ? (
-                      errors.store ? (
+                    {!empty &&
+                      (errors.store ? (
                         <ErrorButton
                           id="storeError"
                           tooltipTitle={errors.store.message}
                         />
                       ) : (
                         <ActionButton />
-                      )
-                    ) : null}
+                      ))}
                   </div>
                   {innerWidth < 1000 && <br />}
                   <div>
@@ -179,16 +177,15 @@ function AddItem() {
                         ),
                       }}
                     />
-                    {!empty ? (
-                      errors.priceInUSD ? (
+                    {!empty &&
+                      (errors.priceInUSD ? (
                         <ErrorButton
                           id="priceError"
                           tooltipTitle={errors.priceInUSD.message}
                         />
                       ) : (
                         <ActionButton />
-                      )
-                    ) : null}
+                      ))}
                     {generateBrs(2)}
                     <FormControl>
                       <FormHelperText

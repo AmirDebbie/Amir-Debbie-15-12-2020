@@ -4,7 +4,7 @@ This project was created as past of a frontend react assignment from the company
 This is a simple shopping tracker to help keep track with your online purchases.\
 The project is backed by frontend tests (written in cypress).\
 
-Important to note, the project was created for presentation purposes, there for it uses mock data, meaning the data is not persisted (the data you insert will not be saved in db, nor local storage). \
+Important to note, the project was created for presentation purposes, therefore it uses mock data, meaning the data is not persisted (the data you insert will not be saved in db, nor local storage). \
 Local storage **is** used to save user preferences such as theme and currency.
 
 ## GitHub Pages Link
@@ -20,7 +20,7 @@ https://amirdebbie.github.io/Amir-Debbie-15-12-2020/
 
 4. Run `npm start` to start react in development mode.
 
-5. If you want, run `npx cypress open` to view and run the tests.
+5. If you want, in a different terminal run `cd shopping-tracker` and `npx cypress open` to view and run the tests. Be sure that the app is running on port 3000 before starting the tests, otherwise they will fail.
 
 ## Main Technologies
 
@@ -29,8 +29,7 @@ https://amirdebbie.github.io/Amir-Debbie-15-12-2020/
 - styled-components
 - Testing (Cypress Library)
 
-## Presentation GIF
+## Demo GIF
 
-![hide](./reademeFiles/D4nIfprwFe.gif)
+![Gif](readmeFiles/D4nIfprwFe.gif)
 
-## Images

@@ -4,14 +4,14 @@ describe("Shopping Tracker Tests", () => {
   });
 
   it("Test not found route and redirect", () => {
-    cy.visit("http://localhost:3000/list/received");
+    cy.visit("http://localhost:3000/#/list/received");
     cy.get("#notFound");
-    cy.visit("http://localhost:3000/sdsad");
+    cy.visit("http://localhost:3000/#/sdsad");
     cy.get("#notFound");
-    cy.visit("http://localhost:3000/lis");
+    cy.visit("http://localhost:3000/#/lis");
     cy.get("#notFound");
     cy.visit("http://localhost:3000/");
-    cy.url().should("equal", "http://localhost:3000/list");
+    cy.url().should("equal", "http://localhost:3000/#/list");
   });
 
   it("Tests the ability to add item to list", () => {
