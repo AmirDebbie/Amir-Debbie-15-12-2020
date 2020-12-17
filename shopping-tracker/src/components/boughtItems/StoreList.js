@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { capitalize, getStoresObj } from "../../helpers";
+import { capitalize, getStoresObj, getPrice } from "../../helpers";
 import {
   TableHeader,
   StyledUl,
@@ -11,7 +11,8 @@ import {
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const StoreList = () => {
-  const { shoppingList } = useSelector((state) => state);
+  const { shoppingList, currency } = useSelector((state) => state);
+
   const stores = useMemo(() => {
     return getStoresObj(shoppingList);
   }, [shoppingList]);
@@ -22,11 +23,14 @@ const StoreList = () => {
       <ListWrapper>
         <StyledUl>
           <li>
-            <TableHeader repeatFormula="1fr 3fr 2fr">
+            <TableHeader repeatFormula="1fr 2fr 2fr 2fr">
               <ShoppingCartIcon />
               <StyledSpan weight="bold">Store</StyledSpan>
               <StyledSpan center weight="bold">
                 Product Amount
+              </StyledSpan>
+              <StyledSpan center weight="bold">
+                Total Price
               </StyledSpan>
             </TableHeader>
           </li>
@@ -34,11 +38,22 @@ const StoreList = () => {
             <li key={store}>
               <StyledDivForList
                 id={store.split(" ").join("")}
-                repeatFormula="1fr 3fr 2fr"
+                repeatFormula="1fr 2fr 2fr 2fr"
               >
                 <ShoppingCartIcon />
-                <StyledSpan weight="bold">{capitalize(store)}</StyledSpan>
-                <StyledSpan center>{stores[store]}</StyledSpan>
+                <StyledSpan
+                  id={`${store.split(" ").join("")}Name`}
+                  weight="bold"
+                >
+                  {capitalize(store)}
+                </StyledSpan>
+                <StyledSpan id={`${store.split(" ").join("")}Amount`} center>
+                  {stores[store].amount}
+                </StyledSpan>
+                <StyledSpan id={`${store.split(" ").join("")}Price`} center>
+                  {getPrice(stores[store].price, currency)}
+                  {currency.current === "ILS" ? "₪" : "$"}
+                </StyledSpan>
               </StyledDivForList>
             </li>
           ))}

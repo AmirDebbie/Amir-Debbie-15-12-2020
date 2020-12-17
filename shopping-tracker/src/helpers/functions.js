@@ -22,14 +22,23 @@ export const generateBrs = (num) => {
 };
 
 export const getStoresObj = (shoppingList, received = false) => {
-  const storesArr = shoppingList
-    .filter((item) => (received ? item.received : !item.received))
-    .map((item) => item.store);
-  const storedObj = {};
-  storesArr.forEach((store) => {
-    storedObj[store.toLowerCase()] = storedObj[store.toLowerCase()]
-      ? storedObj[store.toLowerCase()] + 1
-      : 1;
+  const itemsArr = shoppingList.filter((item) =>
+    received ? item.received : !item.received
+  );
+  const storesObj = {};
+  itemsArr.forEach((item) => {
+    storesObj[item.store.toLowerCase()] = storesObj[item.store.toLowerCase()]
+      ? {
+          amount: storesObj[item.store.toLowerCase()].amount + 1,
+          price: storesObj[item.store.toLowerCase()].price + item.priceInUSD,
+        }
+      : { amount: 1, price: item.priceInUSD };
   });
-  return storedObj;
+  return storesObj;
+};
+
+export const getPrice = (priceInUSD, currency) => {
+  return currency.current === "USD"
+    ? priceInUSD
+    : Math.round(priceInUSD * currency.dif);
 };

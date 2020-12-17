@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setList } from "../../redux/actions";
-import { capitalize, formatToIsraeliDate } from "../../helpers";
+import { capitalize, formatToIsraeliDate, getPrice } from "../../helpers";
 import {
   TableHeader,
   StyledUl,
@@ -79,12 +79,6 @@ function ItemList() {
     });
   };
 
-  const getPrice = (priceInUSD) => {
-    return currency.current === "USD"
-      ? priceInUSD
-      : Math.round(priceInUSD * currency.dif);
-  };
-
   const filteredListPriceSum = useMemo(() => {
     return filteredList.reduce((acc, item) => acc + item.priceInUSD, 0);
   }, [filteredList]);
@@ -139,7 +133,7 @@ function ItemList() {
                 <StyledSpan weight="bold">{capitalize(item.name)}</StyledSpan>
                 <StyledSpan>{capitalize(item.store)}</StyledSpan>
                 <StyledSpan>
-                  {getPrice(item.priceInUSD)}
+                  {getPrice(item.priceInUSD, currency)}
                   {currency.current === "ILS" ? "₪" : "$"}
                 </StyledSpan>
                 <StyledSpan center>
@@ -165,7 +159,7 @@ function ItemList() {
               Amount of Products: {filteredList.length}
             </StyledSpan>
             <StyledSpan weight="bold">
-              Sum of Prices: {getPrice(filteredListPriceSum)}
+              Sum of Prices: {getPrice(filteredListPriceSum, currency)}
               {currency.current === "ILS" ? "₪" : "$"}
             </StyledSpan>
           </TableFooter>

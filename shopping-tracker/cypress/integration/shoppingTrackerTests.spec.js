@@ -86,7 +86,7 @@ describe("Shopping Tracker Tests", () => {
     cy.get("#boughtItems").click();
 
     cy.get("#storesButton").click();
-    cy.get("#ebay").contains("1");
+    cy.get("#ebayAmount").contains("1");
     cy.get("#itemsButton").click();
     cy.get("#receiveButton0").click();
     cy.get(".swal2-confirm").click();
@@ -101,7 +101,7 @@ describe("Shopping Tracker Tests", () => {
     cy.get("#receivedItems").click();
     cy.get(".receivedListItem").should("have.length", 5);
     cy.get("#storesButton").click();
-    cy.get("#ebay").contains("1");
+    cy.get("#ebayAmount").contains("1");
   });
 
   it("Tests search bar", () => {

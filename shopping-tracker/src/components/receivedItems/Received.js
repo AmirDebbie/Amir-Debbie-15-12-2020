@@ -44,13 +44,11 @@ function Received() {
           Store List
         </Button>
       </Center>
-      {tab === "items" && (
-        <Tooltip arrow placement="top" title="Change Currency">
-          <StyledCurrencyButton onClick={() => dispatch(toggleCurrency())}>
-            {currency.current === "ILS" ? "₪" : "$"}
-          </StyledCurrencyButton>
-        </Tooltip>
-      )}
+      <Tooltip arrow placement="top" title="Change Currency">
+        <StyledCurrencyButton onClick={() => dispatch(toggleCurrency())}>
+          {currency.current === "ILS" ? "₪" : "$"}
+        </StyledCurrencyButton>
+      </Tooltip>
       <br />
       {tab === "items" ? (
         <ErrorBoundary>

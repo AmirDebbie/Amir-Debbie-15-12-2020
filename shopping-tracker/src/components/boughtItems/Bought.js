@@ -45,13 +45,11 @@ function Bought() {
           Store List
         </Button>
       </Center>
-      {tab === "items" && (
-        <Tooltip arrow placement="top" title="Change Currency">
-          <StyledCurrencyButton onClick={() => dispatch(toggleCurrency())}>
-            {currency.current === "ILS" ? "₪" : "$"}
-          </StyledCurrencyButton>
-        </Tooltip>
-      )}
+      <Tooltip arrow placement="top" title="Change Currency">
+        <StyledCurrencyButton onClick={() => dispatch(toggleCurrency())}>
+          {currency.current === "ILS" ? "₪" : "$"}
+        </StyledCurrencyButton>
+      </Tooltip>
       <br />
       <AddItem />
       {tab === "items" ? (
