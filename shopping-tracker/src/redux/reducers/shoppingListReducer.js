@@ -53,7 +53,7 @@ const shoppingListMock = [
     priceInUSD: 750,
     deliveryDate: Date.now() + 500000000,
     received: true,
-    receivedDate: Date.now() + 500000000,
+    receivedDate: Date.now() - 500000000,
   },
   {
     id: uuidv4(),
@@ -62,7 +62,7 @@ const shoppingListMock = [
     priceInUSD: 2200,
     deliveryDate: Date.now() + 600000000,
     received: true,
-    receivedDate: Date.now() + 600000000,
+    receivedDate: Date.now() - 600000000,
   },
   {
     id: uuidv4(),
@@ -71,7 +71,7 @@ const shoppingListMock = [
     priceInUSD: 10,
     deliveryDate: Date.now() + 700000000,
     received: true,
-    receivedDate: Date.now() + 700000000,
+    receivedDate: Date.now() - 700000000,
   },
 ];
 
