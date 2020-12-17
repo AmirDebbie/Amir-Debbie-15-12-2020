@@ -4,12 +4,7 @@ import {
   requestCurrencySuccess,
   requestCurrencyFailure,
 } from "./redux/actions";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { setInnerWidth } from "./redux/actions";
 import Bought from "./components/boughtItems/Bought";
 import Received from "./components/receivedItems/Received";
@@ -51,7 +46,7 @@ function App() {
   }, [fetchCurrency, dispatch]);
 
   return (
-    <Router>
+    <HashRouter>
       <ThemeProvider theme={() => getTheme(theme)}>
         <GlobalStyle />
         <NavBar />
@@ -74,7 +69,7 @@ function App() {
           </Route>
         </Switch>
       </ThemeProvider>
-    </Router>
+    </HashRouter>
   );
 }
 

@@ -33,7 +33,8 @@ function ItemList() {
     setFilterInput(input);
 
     const foundItems = [];
-    for (let item of shoppingList) {
+    const boughtItems = shoppingList.filter((item) => !item.received);
+    for (let item of boughtItems) {
       let found = false;
       const arrOfItemsValues = [item.name, item.store];
       for (let value of arrOfItemsValues) {

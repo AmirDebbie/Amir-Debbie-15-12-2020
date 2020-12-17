@@ -30,7 +30,8 @@ function ReceivedItemList() {
     setFilterInput(input);
 
     const foundItems = [];
-    for (let item of shoppingList) {
+    const receivedItems = shoppingList.filter((item) => item.received);
+    for (let item of receivedItems) {
       let found = false;
       const arrOfItemsValues = [item.name, item.store];
       for (let value of arrOfItemsValues) {
