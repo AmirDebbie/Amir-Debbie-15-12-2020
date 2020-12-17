@@ -11,6 +11,7 @@ import {
   searchInputProps,
   searchInputLabelProps,
   TableFooter,
+  errorAPIIconProps,
 } from "../../styles";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ErrorOutlinedIcon from "@material-ui/icons/ErrorOutlined";
@@ -80,7 +81,7 @@ function ReceivedItemList() {
         <>
           <br />
           <APIErrorDiv>
-            <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
+            <ErrorOutlinedIcon style={errorAPIIconProps} />
             &nbsp;
             {currency.error}
           </APIErrorDiv>

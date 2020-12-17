@@ -6,23 +6,19 @@ import {
 } from "./redux/actions";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { setInnerWidth } from "./redux/actions";
-import Bought from "./components/boughtItems/Bought";
-import Received from "./components/receivedItems/Received";
+import { BoughtItemsPage, ReceivedItemsPage } from "./pages";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/NavBar";
 import { ThemeProvider } from "styled-components";
 import { getTheme, GlobalStyle } from "./styles";
 import ErrorBoundary from "./components/ErrorBoundary";
-
-const BASE_URL =
-  "https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,ILS";
-
+import { CURRENCY_API_URL, CURRENCY_INTERVAL_TIME } from "./helpers";
 function App() {
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state);
   const fetchCurrency = useCallback(async () => {
     try {
-      const result = await fetch(BASE_URL);
+      const result = await fetch(CURRENCY_API_URL);
       const {
         rates: { ILS: dif },
       } = await result.json();
@@ -32,18 +28,21 @@ function App() {
     }
   }, [dispatch]);
 
+  const setInnerWidthEventListener = useCallback(() => {
+    dispatch(setInnerWidth(window.innerWidth));
+  }, [dispatch]);
+
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      dispatch(setInnerWidth(window.innerWidth));
-    });
+    window.addEventListener("resize", setInnerWidthEventListener);
 
     fetchCurrency();
-    const currencyInterval = setInterval(fetchCurrency, 10 * 1000);
+    const currencyInterval = setInterval(fetchCurrency, CURRENCY_INTERVAL_TIME);
 
     return () => {
       clearInterval(currencyInterval);
+      window.removeEventListener("resize", setInnerWidthEventListener);
     };
-  }, [fetchCurrency, dispatch]);
+  }, [fetchCurrency, dispatch, setInnerWidthEventListener]);
 
   return (
     <HashRouter>
@@ -53,12 +52,12 @@ function App() {
         <Switch>
           <Route exact path="/list">
             <ErrorBoundary>
-              <Bought />
+              <BoughtItemsPage />
             </ErrorBoundary>
           </Route>
           <Route exact path="/received">
             <ErrorBoundary>
-              <Received />
+              <ReceivedItemsPage />
             </ErrorBoundary>
           </Route>
           <Route exact path="/">

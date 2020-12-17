@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCurrency } from "../../redux/actions";
+import { toggleCurrency } from "../redux/actions";
 import {
   Wrapper,
   TitleWrapper,
   H1,
   Center,
   StyledCurrencyButton,
-} from "../../styles";
+} from "../styles";
 import { Button, Tooltip } from "@material-ui/core";
-import ItemList from "./ItemList";
-import StoreList from "./StoreList";
-import AddItem from "./AddItem";
-import ErrorBoundary from "../ErrorBoundary";
+import ItemList from "../components/boughtItems/ItemList";
+import StoreList from "../components/boughtItems/StoreList";
+import AddItem from "../components/boughtItems/AddItem";
+import ErrorBoundary from "../components/ErrorBoundary";
 
-function Bought() {
+export function BoughtItemsPage() {
   const [tab, setTab] = useState("items");
   const dispatch = useDispatch();
   const { currency } = useSelector((state) => state);
@@ -64,5 +64,3 @@ function Bought() {
     </Wrapper>
   );
 }
-
-export default Bought;

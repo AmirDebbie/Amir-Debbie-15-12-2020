@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCurrency } from "../../redux/actions";
+import { toggleCurrency } from "../redux/actions";
 import {
   Wrapper,
   TitleWrapper,
   H1,
   Center,
   StyledCurrencyButton,
-} from "../../styles";
+} from "../styles";
 import { Tooltip, Button } from "@material-ui/core";
-import ReceivedItemList from "./ReceivedItemList";
-import ReceivedStoreList from "./ReceivedStoreList";
-import ErrorBoundary from "../ErrorBoundary";
+import ReceivedItemList from "../components/receivedItems/ReceivedItemList";
+import ReceivedStoreList from "../components/receivedItems/ReceivedStoreList";
+import ErrorBoundary from "../components/ErrorBoundary";
 
-function Received() {
+export function ReceivedItemsPage() {
   const [tab, setTab] = useState("items");
   const dispatch = useDispatch();
   const { currency } = useSelector((state) => state);
@@ -62,5 +62,3 @@ function Received() {
     </Wrapper>
   );
 }
-
-export default Received;

@@ -18,6 +18,7 @@ import {
   GridDiv,
   searchInputLabelProps,
   inputProps,
+  formIconStyleProps,
 } from "../../styles";
 import { useForm } from "react-hook-form";
 import { ErrorButton, ActionButton } from "../formIcons";
@@ -108,7 +109,7 @@ function AddItem() {
                         style: inputProps[theme],
                         endAdornment: (
                           <InputAdornment position="end">
-                            <AddIcon style={{ color: "black" }} />
+                            <AddIcon style={formIconStyleProps} />
                           </InputAdornment>
                         ),
                       }}
@@ -137,7 +138,7 @@ function AddItem() {
                         style: inputProps[theme],
                         endAdornment: (
                           <InputAdornment position="end">
-                            <StoreIcon style={{ color: "black" }} />
+                            <StoreIcon style={formIconStyleProps} />
                           </InputAdornment>
                         ),
                       }}
@@ -172,7 +173,7 @@ function AddItem() {
                         style: inputProps[theme],
                         endAdornment: (
                           <InputAdornment position="end">
-                            <AttachMoneyIcon style={{ color: "black" }} />
+                            <AttachMoneyIcon style={formIconStyleProps} />
                           </InputAdornment>
                         ),
                       }}

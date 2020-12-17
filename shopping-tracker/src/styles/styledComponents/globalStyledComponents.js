@@ -17,15 +17,3 @@ export const GridDiv = styled.div`
       props.repeatFormula ? props.repeatFormula : "1fr"};
   }
 `;
-
-export const searchInputProps = {
-  dark: { color: "#DFDFDF", backgroundColor: "#222" },
-};
-
-export const inputProps = {
-  dark: { color: "#DFDFDF" },
-};
-
-export const searchInputLabelProps = {
-  dark: { color: "#DFDFDF" },
-};

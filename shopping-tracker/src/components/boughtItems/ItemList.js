@@ -13,6 +13,7 @@ import {
   searchInputProps,
   searchInputLabelProps,
   TableFooter,
+  errorAPIIconProps,
 } from "../../styles";
 import { Tooltip, TextField } from "@material-ui/core";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
@@ -89,7 +90,6 @@ function ItemList() {
         <TextField
           id="searchBar"
           variant="outlined"
-          style={{ color: "blue" }}
           value={filterInput}
           label="Search"
           onChange={handleFilter}
@@ -105,7 +105,7 @@ function ItemList() {
         <>
           <br />
           <APIErrorDiv>
-            <ErrorOutlinedIcon style={{ width: "23px", height: "23px" }} />
+            <ErrorOutlinedIcon style={errorAPIIconProps} />
             &nbsp;
             {currency.error}
           </APIErrorDiv>

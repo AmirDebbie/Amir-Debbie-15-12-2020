@@ -10,7 +10,13 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { setTheme } from "../redux/actions";
-import { StyledLink, StyledToolBar, StyledDrawer, DrawerItem } from "../styles";
+import {
+  StyledLink,
+  StyledToolBar,
+  StyledDrawer,
+  DrawerItem,
+  drawerIconProps,
+} from "../styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 function NavAppBar() {
@@ -68,13 +74,13 @@ function NavAppBar() {
           <StyledLink to="/list">
             <DrawerItem id="boughtItems" onClick={() => setOpen(false)}>
               Bought Items
-              <ShoppingCartIcon style={{ position: "absolute", right: 10 }} />
+              <ShoppingCartIcon style={drawerIconProps} />
             </DrawerItem>
           </StyledLink>
           <StyledLink to="/received">
             <DrawerItem id="receivedItems" onClick={() => setOpen(false)}>
               Received Items
-              <ShoppingCartIcon style={{ position: "absolute", right: 10 }} />
+              <ShoppingCartIcon style={drawerIconProps} />
             </DrawerItem>
           </StyledLink>
         </StyledDrawer>
