@@ -20,7 +20,7 @@ To download the app:
 
 **PWA Demo**
 
-![Gif](readmeFiles/KXheg6Xqmx.gif)
+![Gif](readmeFiles/bWLk7mB1BW.gif)
 ## How To Run
 1. Clone the repo to your machine
 
