@@ -1,6 +1,6 @@
 # Shopping Tracker Project
 
-This project was created as past of a frontend react assignment from the company Herolo. \
+This project was created as part of a frontend react assignment from the company Herolo. \
 This is a simple shopping tracker to help keep track with your online purchases.\
 The project is backed by frontend tests (written in cypress) with CICD to github actions. The app deploys to github pages on every push to master.\
 The app is responsive both for smartphones and desktops.
