@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Amir-Debbie-15-12-2020/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/Amir-Debbie-15-12-2020/static/js/main.451d00ef.chunk.js",
-    "main.js.map": "/Amir-Debbie-15-12-2020/static/js/main.451d00ef.chunk.js.map",
+    "main.js": "/Amir-Debbie-15-12-2020/static/js/main.b47f5035.chunk.js",
+    "main.js.map": "/Amir-Debbie-15-12-2020/static/js/main.b47f5035.chunk.js.map",
     "runtime-main.js": "/Amir-Debbie-15-12-2020/static/js/runtime-main.da7915cd.js",
     "runtime-main.js.map": "/Amir-Debbie-15-12-2020/static/js/runtime-main.da7915cd.js.map",
     "static/js/2.32ef19ee.chunk.js": "/Amir-Debbie-15-12-2020/static/js/2.32ef19ee.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.da7915cd.js",
     "static/js/2.32ef19ee.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.451d00ef.chunk.js"
+    "static/js/main.b47f5035.chunk.js"
   ]
 }
