@@ -1,13 +1,15 @@
 {
   "files": {
     "main.css": "/Amir-Debbie-15-12-2020/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/Amir-Debbie-15-12-2020/static/js/main.38fb2008.chunk.js",
-    "main.js.map": "/Amir-Debbie-15-12-2020/static/js/main.38fb2008.chunk.js.map",
+    "main.js": "/Amir-Debbie-15-12-2020/static/js/main.6bb709de.chunk.js",
+    "main.js.map": "/Amir-Debbie-15-12-2020/static/js/main.6bb709de.chunk.js.map",
     "runtime-main.js": "/Amir-Debbie-15-12-2020/static/js/runtime-main.da7915cd.js",
     "runtime-main.js.map": "/Amir-Debbie-15-12-2020/static/js/runtime-main.da7915cd.js.map",
     "static/js/2.32ef19ee.chunk.js": "/Amir-Debbie-15-12-2020/static/js/2.32ef19ee.chunk.js",
     "static/js/2.32ef19ee.chunk.js.map": "/Amir-Debbie-15-12-2020/static/js/2.32ef19ee.chunk.js.map",
     "index.html": "/Amir-Debbie-15-12-2020/index.html",
+    "service-worker.js": "/Amir-Debbie-15-12-2020/service-worker.js",
+    "service-worker.js.map": "/Amir-Debbie-15-12-2020/service-worker.js.map",
     "static/css/main.6dea0f05.chunk.css.map": "/Amir-Debbie-15-12-2020/static/css/main.6dea0f05.chunk.css.map",
     "static/js/2.32ef19ee.chunk.js.LICENSE.txt": "/Amir-Debbie-15-12-2020/static/js/2.32ef19ee.chunk.js.LICENSE.txt"
   },
@@ -15,6 +17,6 @@
     "static/js/runtime-main.da7915cd.js",
     "static/js/2.32ef19ee.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.38fb2008.chunk.js"
+    "static/js/main.6bb709de.chunk.js"
   ]
 }
