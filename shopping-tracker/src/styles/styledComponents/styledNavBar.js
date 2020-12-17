@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ToolBar } from "@material-ui/core";
+import { Toolbar } from "@material-ui/core";
 
 export const StyledLink = styled(Link)`
   color: ${(props) => (props.color ? props.color : "white")};
   text-decoration: ${(props) => (props.textDecoration ? "underline" : "none")};
 `;
 
-export const StyledToolBar = styled(ToolBar)`
+export const StyledToolBar = styled(Toolbar)`
   background-color: ${({ theme }) => theme.colors.main};
 `;
 
