@@ -37,8 +37,8 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
 
   @media (max-width: 768px) {
-    padding: 40px 10px 10px 10px;
-    width: 95%;
+    padding: 40px 0 0 0;
+    width: 100%;
   }
 `;
 

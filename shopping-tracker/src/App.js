@@ -33,6 +33,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch(setInnerWidth(window.innerWidth));
     window.addEventListener("resize", setInnerWidthEventListener);
 
     fetchCurrency();
