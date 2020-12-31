@@ -19,7 +19,7 @@ export function ReceivedItemsPage() {
   const { currency } = useSelector((state) => state);
 
   return (
-    <Wrapper>
+    <Wrapper data-aos="fade-up">
       <Center>
         <TitleWrapper>
           <H1>Received Items</H1>
