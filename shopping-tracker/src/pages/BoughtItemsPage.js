@@ -20,7 +20,7 @@ export function BoughtItemsPage() {
   const { currency } = useSelector((state) => state);
 
   return (
-    <Wrapper>
+    <Wrapper data-aos="fade-up">
       <Center>
         <TitleWrapper>
           <H1>Bought Items</H1>
