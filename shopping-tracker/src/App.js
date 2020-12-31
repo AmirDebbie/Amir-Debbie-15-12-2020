@@ -13,6 +13,9 @@ import { ThemeProvider } from "styled-components";
 import { getTheme, GlobalStyle } from "./styles";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { CURRENCY_API_URL, CURRENCY_INTERVAL_TIME } from "./helpers";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function App() {
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state);
@@ -44,6 +47,10 @@ function App() {
       window.removeEventListener("resize", setInnerWidthEventListener);
     };
   }, [fetchCurrency, dispatch, setInnerWidthEventListener]);
+
+  useEffect(() => {
+    AOS.init({ duration: 700 });
+  }, []);
 
   return (
     <HashRouter>
